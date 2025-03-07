@@ -1,0 +1,96 @@
+[
+    { 
+        "name": "Bench Press", 
+        "primaryMuscles": ["Chest", "Front Deltoid"],
+        "secondaryMuscles": ["Triceps"],
+        "weightTypes": ["Barbell"],
+        "weightClass": "kg_plates_barbell",
+        "link": "https://www.strengthlog.com/bench-press/"
+    },
+    { 
+        "name": "Squat", 
+        "primaryMuscles": ["Quads", "Adductors", "Glutes", "Lower Back"],
+        "secondaryMuscles": ["Calves"],
+        "weightTypes": ["Barbell"],
+        "weightClass": "kg_plates_barbell",
+        "link": "https://www.strengthlog.com/squat/"
+    },
+    { 
+        "name": "Deadlift", 
+        "primaryMuscles": ["Glutes", "Lower Back"],
+        "secondaryMuscles": ["Quads", "Hamstrings", "Adductors", "Trapezius", "Forearm Flexors"],
+        "weightTypes": ["Barbell"],
+        "weightClass": "kg_plates_barbell",
+        "link": "https://www.strengthlog.com/deadlift/"
+    },
+
+    { 
+        "name": "Overhead Press", 
+        "primaryMuscles": ["Front Deltoid"],
+        "secondaryMuscles": ["Triceps", "Lateral Deltoid"],
+        "weightTypes": ["Barbell"],
+        "weightClass": "kg_plates_barbell",
+        "link": "https://www.strengthlog.com/overhead-press/"
+    },
+
+    { 
+        "name": "Pull-Up", 
+        "primaryMuscles": ["Lats"],
+        "secondaryMuscles": ["Biceps", "Rear Deltoids", "Forearm Flexors", "Rotator Cuffs"],
+        "weightTypes": ["Body", "Plates"],
+        "weightClass": "kg_plates_body",
+        "link": "https://www.strengthlog.com/pull-up/"
+    },
+
+    { 
+        "name": "Push-Up", 
+        "primaryMuscles": ["Chest", "Front Deltoid"],
+        "secondaryMuscles": ["Triceps", "Abs"],
+        "weightTypes": ["Body"],
+        "weightClass": "body",
+        "link": "https://www.strengthlog.com/push-up/"
+    },
+
+    { 
+        "name": "Barbell Lunge", 
+        "primaryMuscles": ["Quads", "Glutes", "Adductors"],
+        "weightTypes": ["Barbell"],
+        "weightClass": "kg_plates_barbell",
+        "link": "https://www.strengthlog.com/barbell-lunge/"
+    },
+
+    { 
+        "name": "Machine Bicep Curl", 
+        "primaryMuscles": ["Biceps"],
+        "secondaryMuscles": ["Forearm Flexors"],
+        "weightTypes": ["Machine"],
+        "weightClass": "lbs_machine_unknown",
+        "link": "https://www.strengthlog.com/machine-bicep-curl/"
+    },
+
+    { 
+        "name": "Dumbbell Lying Triceps Extension", 
+        "primaryMuscles": ["Triceps"],
+        "weightTypes": ["Dumbbells"],
+        "link": "https://www.strengthlog.com/dumbbell-lying-triceps-extension/"
+    },
+
+
+    { 
+        "name": "Machine Leg Press", 
+        "primaryMuscles": ["Quads", "Glutes", "Adductors"],
+        "secondaryMuscles": ["Hamstrings"],
+        "weightTypes": ["Machine"],
+        "weightClass": "lbs_machine_unknown",
+        "link": "https://www.strengthlog.com/leg-press/"
+    },
+
+    { 
+        "name": "Hip Abduction Machine", 
+        "primaryMuscles": ["Abductors"],
+        "secondaryMuscles": ["Glutes"],
+        "weightTypes": ["Machine"],
+        "weightClass": "lbs_machine_145",
+        "link": "https://www.strengthlog.com/hip-abduction-machine/"
+    }
+]

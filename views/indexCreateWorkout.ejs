@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript" src="scriptCreateWorkout.js"></script>
+    <script type="text/javascript" src="scriptEditWorkout.js"></script>
+    <script type="text/javascript" src="scriptSelectExercise.js"></script>
+    <script type="text/javascript" src="sorttable.js"></script>
+</head>
+<body>
+    <div class="container">
+        <form id="create-workout-form">
+            <h1>Create New Workout</h1>
+            <label for="workout-title">Workout Title:</label>
+            <input type="text" id="workout-title" placeholder="Enter workout title" required>
+
+            <label for="workout-muscle-presets-select">Muscle Presets:</label>
+            <select id="workout-muscle-presets-select">
+                <option value="">Select a Muscle Presets</option>
+            </select>
+
+            <div onclick="document.getElementById('workout-muscle-focus-table').classList.toggle('hidden')">Table</div>
+            <table id="workout-muscle-focus-table" class="hidden sortable">
+                <thead>
+                    <tr>
+                        <th>Muscle Name</th>
+                        <th>Muscle Score</th>
+                        <th>Primary?</th>
+                        <th>Secondary?</th>
+                    </tr>
+                </thead>
+
+                <tbody id="workout-muscle-focus-table-body">
+                </tbody>
+            </table>
+
+            <br>
+            <br>
+
+            <div id="form-workout-info">
+                <div id="form-workout-sets-info"></div>
+                <div id="form-workout-focus-info"></div>
+            </div>
+            <button type="submit">Create Workout</button>
+        </form>
+
+        <div id="select-exercise-container" class="hidden">
+            <form id="filterForm">
+                <label for="weightTypes">Weight Equipment:</label>
+                <select id="weightTypes" multiple>
+                </select>
+
+                <label for="muscles">Muscles:</label>
+                <select id="muscles" multiple>
+                </select>
+
+                <button id="filter-submit" type="submit">Filter</button>
+            </form>
+
+            <input type="text" id="select-exercise-search" placeholder="Search for an Exercise...">
+
+            <table id="exerciseTable" class="sortable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Primary Muscles</th>
+                        <th>Secondary Muscles</th>
+                        <th>Weight Types</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="exerciseTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="workout-container" class="hidden">
+            <h1 id="workout-name"></h1>
+            <h2>Workout Info</h2>
+            <div id="workout-info">
+                <div id="workout-sets-info"></div>
+                <div id="workout-muscle-score-info">
+                    <div id="workout-muscle-score-info-primary"></div>
+                    <div id="workout-muscle-score-info-secondary"></div>
+                    <div id="workout-muscle-score-info-standard"></div>
+                </div>
+            </div>
+
+            <h2>Add Exercise</h2>
+
+            <div id="select-new-exercise">New Exercise</div>
+            <div id="selectedExercise"></div>
+
+            <select id="exercise-type-select">
+                <option value="">Select a Exercise Type</option>
+                <option value="Strength (Tier 1)">Strength (Tier 1)</option>
+                <option value="Strength (Tier 2)">Strength (Tier 2)</option>
+                <option value="Holds (Tier 1)">Holds (Tier 1)</option>
+                <option value="Holds (Tier 2)">Holds (Tier 2)</option>
+            </select>
+
+            <input type="number" id="reps" placeholder="Reps" min="1">
+            <select id="weight" unit="null">
+                <option value="">Weight (Select an Exercise)</option>
+            </select>
+
+            <select id="fatigue">
+                <option value="">Fatigue (X / 10)</option>
+                <% for(var i = 1; i <= 10; i++) { %>
+                    <option value="<%= i%>"><%= i%></option>
+                <% } %>
+            </select>
+
+            <div id="recent-values">
+                <p>Select a tier to see the most recent values.</p>
+            </div>
+            <div id="recent-values-fill">Fill with recent Values</div>
+            
+            <h3 id="clearExerciseFields">Clear</h3>
+
+            <button id="addExercise">Add Exercise</button>
+            <button id="saveWorkout">Save Workout</button>
+
+            <h2>Exercises</h2>
+            <div id="exerciseTierTracker"></div>
+            <ul id="exerciseList"></ul>
+        </div>
+
+        <footer><a href="/">Home (Cancel workout)</a></footer>
+    </div>
+    <% if (loadWorkout != 'undefined') { %>
+        <script type="text/javascript">
+            loadWorkout = JSON.parse(decodeURIComponent('<%= loadWorkout %>'));
+        </script>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,69 @@
+[
+    {
+        "name":"Pull",
+        "primaryMuscles":[],
+        "secondaryMuscles":["Lats", "Biceps", "Forearm Flexors", "Abs"]
+    },
+    {
+        "name":"Pull (Focus: Lats)",
+        "primaryMuscles":["Lats"],
+        "secondaryMuscles":["Biceps", "Forearm Flexors", "Abs"]
+    },
+    {
+        "name":"Pull (Focus: Forearm Flexors)",
+        "primaryMuscles":["Forearm Flexors"],
+        "secondaryMuscles":["Lats", "Biceps", "Abs"]
+    },
+    {
+        "name":"Pull (Focus: Biceps)",
+        "primaryMuscles":["Biceps"],
+        "secondaryMuscles":["Lats", "Forearm Flexors", "Abs"]
+    },
+
+    {
+        "name":"Push",
+        "primaryMuscles":[],
+        "secondaryMuscles":["Chest", "Lateral Deltoid", "Front Deltoid", "Rear Deltoids", "Triceps", "Abs"]
+    },
+    {
+        "name":"Push (Focus: Chest)",
+        "primaryMuscles":["Chest"],
+        "secondaryMuscles":["Lateral Deltoid", "Front Deltoid", "Rear Deltoids", "Triceps", "Abs"]
+    },
+    {
+        "name":"Push (Focus: Shoulders)",
+        "primaryMuscles":["Lateral Deltoid", "Front Deltoid", "Rear Deltoids"],
+        "secondaryMuscles":["Chest", "Triceps", "Abs"]
+    },
+    {
+        "name":"Push (Focus: Triceps)",
+        "primaryMuscles":["Triceps"],
+        "secondaryMuscles":["Chest", "Lateral Deltoid", "Front Deltoid", "Rear Deltoids", "Abs"]
+    },
+
+    {
+        "name":"Legs", 
+        "primaryMuscles":[],
+        "secondaryMuscles":["Hamstrings", "Calves", "Quads", "Adductors", "Abductors"]
+    },
+    {
+        "name":"Legs (Focus: Hamstrings)", 
+        "primaryMuscles":["Hamstrings"],
+        "secondaryMuscles":["Calves", "Quads", "Adductors", "Abductors"]
+    },
+    {
+        "name":"Legs (Focus: Calves)", 
+        "primaryMuscles":["Calves"],
+        "secondaryMuscles":["Hamstrings", "Quads", "Adductors", "Abductors"]
+    },
+    {
+        "name":"Legs (Focus: Quads)", 
+        "primaryMuscles":["Quads"],
+        "secondaryMuscles":["Hamstrings", "Calves", "Adductors", "Abductors"]
+    },
+    {
+        "name":"Legs (Focus: Hips)", 
+        "primaryMuscles":["Adductors", "Abductors"],
+        "secondaryMuscles":["Hamstrings", "Calves", "Quads"]
+    }
+]

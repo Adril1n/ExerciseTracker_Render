@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="sorttable.js"></script>
+    <script src="script.js"></script>
+    <title>Exercise Tracker</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercise Tracker</h1>
+        <div>
+            <h2 id="workoutName">Start a New Workout</h2>
+            <select id="workoutTypeSelect">
+                <option value="">Select a Workout Type</option>
+            </select>
+            <div id="workoutInfo">
+                <div id="workoutSetsInfo"></div>
+                <div id="workoutTypeInfo"></div>
+            </div>
+
+            <br>
+            <form id="filterForm">
+                <label for="weightTypes">Weight Equipment:</label>
+                <select id="weightTypes" multiple>
+                </select>
+
+                <label for="muscles">Muscles:</label>
+                <select id="muscles" multiple>
+                </select>
+
+                <button type="submit">Filter</button>
+            </form>
+
+            <table id="exerciseTable" class="sortable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Primary Muscles</th>
+                        <th>Secondary Muscles</th>
+                        <th>Weight Types</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="exerciseTableBody">
+                </tbody>
+            </table>
+            <br>
+
+            <div id="selectedExercise">Please choose an Exercise</div>
+
+            <select id="exercise-type-select">
+                <option value="">Select a Exercise Type</option>
+                <option value="Strength (Tier 1)">Strength (Tier 1)</option>
+                <option value="Strength (Tier 2)">Strength (Tier 2)</option>
+                <option value="Holds (Tier 1)">Holds (Tier 1)</option>
+                <option value="Holds (Tier 2)">Holds (Tier 2)</option>
+            </select>
+            <div id="recent-values">
+                <p>Select a tier to see the most recent values.</p>
+            </div>
+
+            <input type="number" id="reps" placeholder="Reps" min="1">
+            <input type ="number" id="weight" placeholder="Weight (lbs)" min="0">
+            <input type="number" id="fatigue" placeholder="Fatigue" max="10" min="1">
+            
+            <h3 id="clearExerciseFields">Clear</h3>            
+            <button id="addExercise">Add Exercise</button>
+            <button id="saveWorkout">Save Workout</button>
+        </div>
+        <h2>Exercises</h2>
+        <div id="exerciseTierTracker"></div>
+        <ul id="exerciseList"></ul>
+        <h2>Previous Workouts</h2>
+        <ul id="workoutList"></ul>
+    </div>
+</body>
+</html>
