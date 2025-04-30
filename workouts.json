@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "name": "Workout Rotation 146 - Wednesday",
+    "exercises": [
+      {
+        "name": "Barbell Lunge",
+        "fatigue": 7,
+        "reps": 12,
+        "weight": 20,
+        "type": "Holds (Tier 1)"
+      }
+    ],
+    "muscleScores": {
+      "Adductors": {
+        "type": "standard",
+        "score": 14
+      },
+      "Glutes": {
+        "type": "standard",
+        "score": 14
+      },
+      "Quads": {
+        "type": "standard",
+        "score": 14
+      }
+    },
+    "tiersCompleted": {
+      "Barbell Lunge": [
+        "Holds (Tier 1)"
+      ]
+    },
+    "focusedMuscles": {
+      "primary": [],
+      "secondary": []
+    },
+    "setsInfo": "Sets: Holds (Tier 1), Strength (Tier 1), Holds (Tier 2)"
+  }
+]

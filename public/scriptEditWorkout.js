@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reps = Math.max(parseInt(reps), 1),
         weight = Math.max(parseFloat(weight), 0)
 
-        if (exerciseName && fatigue && reps && weight && exerciseType) {
+        if (exerciseName && fatigue && reps && (weight >= 0) && exerciseType) {
             createExercise({name: exerciseName, fatigue: fatigue, reps: reps, weight: weight, type: exerciseType});
         } 
         else {
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return { 
             name: document.getElementById('workout-name').innerHTML,
             exercises: currentExercises,
-            muscleScores: muscleScores, //Object.fromEntries(Object.entries(muscleScores).filter(([k,v]) => v.score !== 0)), // filtering works to not fill up json, but the muscle status doesn't show zeros of the muscle has never been worked on
+            muscleScores: Object.fromEntries(Object.entries(muscleScores).filter(([k,v]) => v.score !== 0)), // filtering works to not fill up json, but the muscle status doesn't show zeros of the muscle has never been worked on
             tiersCompleted: exerciseTierTracker,
             focusedMuscles: JSON.parse(document.getElementById('form-workout-focus-info').getAttribute('focusedMuscles')),
             setsInfo: document.getElementById('form-workout-sets-info').textContent

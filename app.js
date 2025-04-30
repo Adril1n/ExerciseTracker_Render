@@ -2,7 +2,25 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const cors = require('cors');
+const {Firestore} = require('@google-cloud/firestore');
 
+const firestore = new Firestore();
+// const workoutsDocument = firestore.doc("Workouts/xsjpZBVYT3NgjJT1rMXr");
+
+// async function createBucket(bucketName) {
+//     await storage.createBucket(bucketName);
+//     console.log(`Bucket ${bucketName} was created`);
+// }
+
+// createBucket('TestBucket-1').catch(console.error);
+
+// async function test() {
+//     const data = await document_.get();
+//     console.log(data.data());
+//     // document_.set({'workout':'HELLOING'})
+// }
+
+// test();
 const app = express();
 const PORT = 3000;
 
@@ -13,6 +31,10 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+const workoutsDocument = firestore.doc("Workouts/e3hmbDO7Nmd6OdxOg6qH");
+
+// TODO: Swap workouts.json to Firestore
+// TOOD: Change to https://www.lyfta.app/exercises
 
 // TODO: CSS, and to fit phone screen
 
@@ -36,12 +58,26 @@ const loadExercises = () => {
 
 
 // Load workouts from JSON file
-const loadWorkouts = () => {
-    if (fs.existsSync('workouts.json')) {
-        const data = fs.readFileSync('workouts.json');
-        return JSON.parse(data);
-    }
-    return [];
+const loadWorkouts = async () => {
+    // if (fs.existsSync('workouts.json')) {
+    //     // const data = fs.readFileSync('workouts.json');
+    //     const data = await workoutsDocument.get();
+    //     console.log(data.data())
+    //     return JSON.parse(data.data()["workout"]);
+    // }
+    var workouts = [];
+
+    // console.log()
+    const documents = await firestore.collection("Workouts").get();
+    documents.forEach(workout => {
+        const data = workout.data();
+        workouts.push(data);
+    });
+
+    return workouts;
+    // const data = await workoutsDocument.get();
+    // const jsonData = JSON.parse(data.data().workout);
+    // return jsonData;
 };
 
 // Load workout presets from JSON file
@@ -125,12 +161,27 @@ app.get('/api/exercise', async (req, res) => {
 
 // Save workouts to JSON file
 const saveWorkouts = (workouts) => {
-    fs.writeFileSync('workouts.json', JSON.stringify(workouts, null, 2));
+    // fs.writeFileSync('workouts.json', JSON.stringify(workouts, null, 2));
+    // workoutsDocument.set({'workout':JSON.stringify(workouts, null, 2)})
+    // https://console.firebase.google.com/u/0/project/exercisetracker-38e52/firestore/databases/-default-/data/~2FWorkouts?view=panel-view&query=1%7CLIM%7C3%2F100
+
+    // console.log(workouts);
+    const promises = []
+    Object.entries(workouts).forEach(d => {
+        promises.push(firestore.collection('Workouts').doc(d[1].name).set(d[1]));
+    })
+
+    Promise.all(promises);
+};
+
+const deleteWorkout = async (workoutName) => {
+    const res = await firestore.collection('Workouts').doc(workoutName).delete();
+    return res;
 };
 
 // Get all workouts
-app.get('/api/workouts', (req, res) => {
-    const workouts = loadWorkouts();
+app.get('/api/workouts', async (req, res) => {
+    const workouts = await loadWorkouts();
     res.json(workouts);
 });
 
@@ -141,17 +192,17 @@ app.get('/api/workouts/workout-presets', (req, res) => {
 });
 
 // Add a new workout
-app.post('/api/workouts', (req, res) => {
-    const workouts = loadWorkouts();
+app.post('/api/workouts', async (req, res) => {
+    const workouts = await loadWorkouts();
     workouts.push(req.body);
     saveWorkouts(workouts);
     res.status(201).json(req.body);
 });
 
 // Add a new workout
-app.post('/api/workouts/:index', (req, res) => {
+app.post('/api/workouts/:index', async (req, res) => {
     const index = parseInt(req.params.index, 10);
-    const workouts = loadWorkouts();
+    const workouts = await loadWorkouts();
     if (index >= 0 && index < workouts.length) {
         workouts[index] = req.body;
     }
@@ -160,8 +211,8 @@ app.post('/api/workouts/:index', (req, res) => {
 });
 
 // Endpoint to get the most recent exercise by type
-app.get('/api/exercises/recent/:name/:type', (req, res) => {
-    const workouts = loadWorkouts();
+app.get('/api/exercises/recent/:name/:type', async (req, res) => {
+    const workouts = await loadWorkouts();
     const name = req.params.name;
     const type = req.params.type;
 
@@ -191,24 +242,26 @@ app.get('/api/exercises/recent/:name/:type', (req, res) => {
 
 
 // Delete a workout by index
-app.delete('/api/workouts/:index', (req, res) => {
+app.delete('/api/workouts/:index', async (req, res) => {
     const index = parseInt(req.params.index, 10);
-    const workouts = loadWorkouts();
+    const workouts = await loadWorkouts();
 
     if (isNaN(index) || index < 0 || index >= workouts.length) {
         return res.status(404).json({ error: 'Workout not found' });
     }
 
-    workouts.splice(index, 1); // Remove the workout at the specified index
-    saveWorkouts(workouts);
+    // workouts.splice(index, 1); // Remove the workout at the specified index
+    // console.log(workouts);
+    // saveWorkouts(workouts);
+    await deleteWorkout(workouts[index].name);
     res.status(204).send(); // No content to send back
 });
 
 
-app.get('/api/muscle-scores', (req, res) => {
+app.get('/api/muscle-scores', async (req, res) => {
     var muscleScores = {};
 
-    const workouts = loadWorkouts();
+    const workouts = await loadWorkouts();
     for (var i = 0; i < workouts.length; i++){
         var workout = workouts[i];
         for (const [muscle, info] of Object.entries(workout.muscleScores)) {

@@ -102,17 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
             name.innerHTML = muscle;
 
             let score = row.insertCell(1);
-            score.innerHTML = muscleScores[muscle];
+            score.innerHTML = muscleScores[muscle] ?? 0;
 
             let primary = row.insertCell(2);
-            primary.appendChild(createMuslceCheckbox(muscle, true));
+            primary.appendChild(createMuscleCheckbox(muscle, true));
 
             let secondary = row.insertCell(3);
-            secondary.appendChild(createMuslceCheckbox(muscle, false));
+            secondary.appendChild(createMuscleCheckbox(muscle, false));
         });
     };
 
-    const createMuslceCheckbox = (muslceName, isPrimary) => {
+    const createMuscleCheckbox = (muslceName, isPrimary) => {
         let input = document.createElement('input');
         input.type = 'checkbox';
         input.name = `muscle-${muslceName}-check`;
