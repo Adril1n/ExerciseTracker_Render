@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsElement.innerHTML = '';
 
         workout.exercises.forEach(exercise => {
-            console.log(exercise);
             detailsElement.innerHTML += `<div>${JSON.stringify(exercise)}</div>`;
         });
 
@@ -60,9 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const editWorkout = () => {
-
         // redirect to createWorkout but with a workout variable, check in indexCreateWorkout if there is a workout variable and fill the index accordingly
-        window.location.replace(`/create-workout?workout=${encodeURIComponent(document.getElementById('details-container').getAttribute('workout'))}`);
+
+        // window.location.replace(`/create-workout?workout=${encodeURIComponent(document.getElementById('details-container').getAttribute('workout'))}`);
+        window.location.replace(`/create-workout?workout=${JSON.parse(document.getElementById('details-container').getAttribute('workout')).name}`);
     };
 
     document.getElementById('details-edit-exercise').addEventListener('click', editWorkout)

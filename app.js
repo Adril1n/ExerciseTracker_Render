@@ -287,9 +287,23 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-app.get('/create-workout', (req, res) => {
-    var workout = req.query.workout;
-    res.render('indexCreateWorkout', {loadWorkout:encodeURIComponent(workout)});
+app.get('/create-workout', async (req, res) => {
+    var workoutName = req.query.workout;
+    var workoutToLoad = undefined;
+    if (workoutName != null)
+    {
+        const workouts = await loadWorkouts();
+        for (var i = 0; i < workouts.length; i++){
+            var workout = workouts[i];
+            if (workout.name == workoutName) {
+                workoutToLoad = workout;
+                break;
+            }
+        } 
+    }
+
+    // workout = workouts[workout];
+    res.render('indexCreateWorkout', {loadWorkout:encodeURIComponent(JSON.stringify(workoutToLoad))});
     // res.render('indexCreateWorkout');
 });
 
