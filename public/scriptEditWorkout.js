@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var currentExercises = [];
     var exerciseTierTracker = {};
 
-    muscleScores = {};
-    exerciseMuscleGroups = {};
+    // muscleScores = {};
+    // exerciseMuscleGroups = {};
 
     const addExercise = () => {
         const exerciseName = exerciseSelect.innerHTML;
@@ -223,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const workout = getCurrentWorkout();
+        workout.date = new Date();
 
         const response = await fetch('/api/workouts', {
             method: 'POST',
@@ -266,8 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    const loadWorkoutToEdit = () => {
-        startWorkout(loadWorkout.name, loadWorkout.setsInfo, loadWorkout.focusedMuscles);
+    const loadWorkoutToEdit = async () => {
+        await startWorkout(loadWorkout.name, loadWorkout.setsInfo, loadWorkout.focusedMuscles);
 
         loadWorkout.exercises.forEach((exercise) => {
             createExercise(exercise);

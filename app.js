@@ -5,22 +5,7 @@ const cors = require('cors');
 const {Firestore} = require('@google-cloud/firestore');
 
 const firestore = new Firestore();
-// const workoutsDocument = firestore.doc("Workouts/xsjpZBVYT3NgjJT1rMXr");
 
-// async function createBucket(bucketName) {
-//     await storage.createBucket(bucketName);
-//     console.log(`Bucket ${bucketName} was created`);
-// }
-
-// createBucket('TestBucket-1').catch(console.error);
-
-// async function test() {
-//     const data = await document_.get();
-//     console.log(data.data());
-//     // document_.set({'workout':'HELLOING'})
-// }
-
-// test();
 const app = express();
 const PORT = 3000;
 
@@ -33,7 +18,6 @@ app.set('views', 'views');
 
 const workoutsDocument = firestore.doc("Workouts/e3hmbDO7Nmd6OdxOg6qH");
 
-// TODO: Swap workouts.json to Firestore
 // TOOD: Change to https://www.lyfta.app/exercises
 
 // TODO: CSS, and to fit phone screen
@@ -57,6 +41,9 @@ const loadExercises = () => {
 }
 
 
+var cachedWorkouts = [];
+var shouldUpdateCachedWorkouts = true;
+
 // Load workouts from JSON file
 const loadWorkouts = async () => {
     // if (fs.existsSync('workouts.json')) {
@@ -65,16 +52,21 @@ const loadWorkouts = async () => {
     //     console.log(data.data())
     //     return JSON.parse(data.data()["workout"]);
     // }
-    var workouts = [];
 
     // console.log()
-    const documents = await firestore.collection("Workouts").get();
-    documents.forEach(workout => {
-        const data = workout.data();
-        workouts.push(data);
-    });
+    if (shouldUpdateCachedWorkouts) {
+        cachedWorkouts = [];
 
-    return workouts;
+        const documents = await firestore.collection("Workouts").get();
+        documents.forEach(workout => {
+            const data = workout.data();
+            cachedWorkouts.push(data);
+        });
+
+        shouldUpdateCachedWorkouts = false;
+    }
+
+    return cachedWorkouts;
     // const data = await workoutsDocument.get();
     // const jsonData = JSON.parse(data.data().workout);
     // return jsonData;
@@ -174,8 +166,16 @@ const saveWorkouts = (workouts) => {
     Promise.all(promises);
 };
 
+const addWorkout = async (name, workoutData) => {
+    const res = await firestore.collection('Workouts').doc(name).set(workoutData);
+    shouldUpdateCachedWorkouts = true;
+    return res;
+};
+
+
 const deleteWorkout = async (workoutName) => {
     const res = await firestore.collection('Workouts').doc(workoutName).delete();
+    shouldUpdateCachedWorkouts = true;
     return res;
 };
 
@@ -193,26 +193,35 @@ app.get('/api/workouts/workout-presets', (req, res) => {
 
 // Add a new workout
 app.post('/api/workouts', async (req, res) => {
-    const workouts = await loadWorkouts();
-    workouts.push(req.body);
-    saveWorkouts(workouts);
+    // const workouts = await loadWorkouts();
+    // workouts.push(req.body);
+    // saveWorkouts(workouts);
+    addWorkout(req.body.name, req.body);
     res.status(201).json(req.body);
 });
 
-// Add a new workout
+// Edit a workout
 app.post('/api/workouts/:index', async (req, res) => {
     const index = parseInt(req.params.index, 10);
     const workouts = await loadWorkouts();
     if (index >= 0 && index < workouts.length) {
-        workouts[index] = req.body;
+        // workouts[index] = req.body;
+        addWorkout(workouts[index].name, req.body);
     }
-    saveWorkouts(workouts);
+
+    // saveWorkouts(workouts);
     res.status(201).json(req.body);
 });
+
+function compareWorkouts(a, b) {
+    return b.date - a.date; //descending order
+}
 
 // Endpoint to get the most recent exercise by type
 app.get('/api/exercises/recent/:name/:type', async (req, res) => {
     const workouts = await loadWorkouts();
+    workouts.sort(compareWorkouts); //sort by descending order
+
     const name = req.params.name;
     const type = req.params.type;
 

@@ -15,10 +15,12 @@ async function initMuscleScores(focusData) {
 
     muscles = [...new Set(muscles)].sort();
 
+    // console.log(focusData.primary.has("trest"))
+
     muscles.forEach(muscle => {
         var type = 'standard';
-        if (focusData.primary.has(muscle)) type = 'primary';
-        else if (focusData.secondary.has(muscle)) type = 'secondary';
+        if (focusData.primary.includes(muscle)) type = 'primary';
+        else if (focusData.secondary.includes(muscle)) type = 'secondary';
 
         muscleScores[muscle] = {'type': type, 'score': 0};
     });
@@ -26,14 +28,14 @@ async function initMuscleScores(focusData) {
     updateMuscleScoreHTML();
 }
 
-function startWorkout(workoutName, setsInfo, focusInfo) {
+async function startWorkout(workoutName, setsInfo, focusInfo) {
     document.getElementById('create-workout-form').classList.toggle('hidden');
 
 
     document.getElementById('workout-name').innerHTML = workoutName;
 
     document.getElementById('workout-sets-info').innerHTML = setsInfo;
-    initMuscleScores(focusInfo);
+    await initMuscleScores(focusInfo);
 
     document.getElementById('workout-container').classList.toggle('hidden');
 }
