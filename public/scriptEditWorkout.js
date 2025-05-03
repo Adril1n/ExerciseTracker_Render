@@ -285,5 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('recent-values-fill').addEventListener('click', fillWithRecentValues);
 
+    // window.onbeforeunload = function () {
+    //     return "are you sure you want to leave? workout will be deleted";
+    // };
+
     if (loadWorkout) loadWorkoutToEdit();
 });

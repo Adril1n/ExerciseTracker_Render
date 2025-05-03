@@ -7,13 +7,25 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="container">
+<body style='background-image: url("/images/background.png");'>
+    <!-- <div class="container">
         <ul>
             <li><a href="create-workout">Create New Workout</a></li>
             <li><a href="muscle-status">View Muscle Status</a></li>
             <li><a href="previous-workouts">View Previous Workouts</a></li>
         </ul>
+
+    </div> -->
+    <div class="home-portal">
+        <h1 class="title">Exercise Tracker</h1>
+        <!-- <img src="/images/home.png" style="position: absolute; right: 0px;"> -->
+        <img src="/images/logos/workout.png" class="logo" style="right: calc(50% - 25px);top: 29%;rotate: -20deg;" onclick="window.location = 'create-workout'">
+        <img src="/images/logos/logs.png" class="logo" style="right: 76.5%;top: 60.5%;" onclick="window.location = 'previous-workouts'">
+        <img src="/images/logos/stats.png" class="logo" style="width: 45px;height: 45px;right: 10.5%;top: 61%;" onclick="window.location = 'muscle-status'">
     </div>
+
+    <script type="text/javascript">
+        document.getElementsByTagName("body")[0].style.backgroundPosition = Math.round(Math.random() * 100) + "% " + Math.round(Math.random() * 100) + "%";
+    </script>
 </body>
 </html>
