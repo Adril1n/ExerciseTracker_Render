@@ -15,12 +15,12 @@ async function initMuscleScores(focusData) {
 
     muscles = [...new Set(muscles)].sort();
 
-    // console.log(focusData.primary.has("trest"))
+    focusData = {'primary': new Set(focusData.primary), 'secondary': new Set(focusData.secondary)};
 
     muscles.forEach(muscle => {
         var type = 'standard';
-        if (focusData.primary.includes(muscle)) type = 'primary';
-        else if (focusData.secondary.includes(muscle)) type = 'secondary';
+        if (focusData.primary.has(muscle)) type = 'primary';
+        else if (focusData.secondary.has(muscle)) type = 'secondary';
 
         muscleScores[muscle] = {'type': type, 'score': 0};
     });

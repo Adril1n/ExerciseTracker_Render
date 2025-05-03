@@ -182,6 +182,7 @@ const deleteWorkout = async (workoutName) => {
 // Get all workouts
 app.get('/api/workouts', async (req, res) => {
     const workouts = await loadWorkouts();
+    workouts.sort(compareWorkouts); //sort by descending order
     res.json(workouts);
 });
 

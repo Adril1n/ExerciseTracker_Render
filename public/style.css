@@ -1,8 +1,22 @@
+
+/* CONTIANS
+    - root, colours, etc.
+    - body
+    - index-css
+    - logos
+    - navigation
+    - gen. input, button
+    - "hidden"-class
+
+    - #selectedExercise:before (!should be moved)
+*/
+
+
 :root {
     /* -- COLOURS -- (r: red, g: green, p: purple)*/
     --background: #222426;
-    --secondary: #636363;
-    --normalText: #F2F2F2;
+    --background-secondary: #202025;
+    --secondary: #c4c4cc;
 
     --rPrimary: #D91A3D;
     --rSecondary: #F2798F;
@@ -16,9 +30,126 @@ body {
     font-family: Arial, sans-serif;
     background-color: var(--background);
     margin: 0;
-/*    background-color: rgba(255,255,255,0.6);*/
 /*    background-blend-mode: lighten;*/
 }
+
+.content {
+/*    background-color: var(--background-secondary);*/
+    position: relative;
+    width: 100%;
+    height: 90%;
+    top: 50px;
+/*    background-color: green;*/
+/*    padding-top: 1%;*/
+}
+
+header {
+    position: fixed;
+    height: 10%;
+    width: 100%;
+    top: 0px;
+    background-color: var(--background-secondary);
+
+    font-size: 1.1rem;
+    color: var(--secondary);
+
+/*    padding: 0px 5px 0 5px;*/
+/*    margin-bottom: 8%;*/
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.title {
+    color: var(--secondary);
+    text-align: center;
+    align-content: center;
+
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 0 5%;
+}
+
+
+.menu-opener {
+    all: unset;
+
+    position: absolute;
+}
+
+header > .menu-opener {
+    right: 1%;
+    top: 15%;
+}
+
+.menu-opener:after {
+    content: '\2807';
+    font-size: 2rem;
+}
+
+.arrow {
+    color: var(--secondary);
+    position: absolute;
+}
+
+header > .arrow {
+    left: 1%;
+    top: 5 %;
+}
+
+.menu-container {
+    position: absolute;
+    width: 80%;
+    height: 100%;
+/*    background-color: grey;*/
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+/*    grid-template-columns: repeat(3, 1fr);*/
+}
+
+.navigation-item {
+    height: 100%;
+/*    margin: 0px 10%;*/
+
+    text-align: center;
+    align-content: center;
+}
+
+.navigation-item > .logo {
+    position: relative;
+    height: 30px;
+    width: 30px;
+
+    margin-bottom: -5px;
+}
+
+.navigation-item > div {
+    position: relative;
+    bottom: -0.2em;
+    font-size: 0.8rem;
+
+    color: var(--secondary);
+}
+
+
+
+
+.bar {
+    width: 100%;
+    height: 10px;
+    background-color: var(--background-secondary);
+    border: 1px solid var(--secondary);
+}
+
+.bar-fill {
+    width: 0%;
+    height: 100%;
+    background-color: white;
+}
+
 
 .home-portal {
     background-image: url("/images/home.png");
@@ -29,12 +160,6 @@ body {
     position: fixed;
 }
 
-.title {
-    color: var(--normalText);
-    text-align: center;
-    text-decoration: underline;
-}
-
 .logo {
     position: absolute;
     width: 50px;
@@ -42,18 +167,25 @@ body {
     cursor: pointer;
 }
 
-/*.container {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/*footer.navigation {
+    position: fixed;
+    bottom: 0px;
+    height: 8%;
+    width: 100%;
+
+    background-image: url("/images/background.png");
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }*/
 
-h1, h2, h3 {
-    color: var(--normalText);
-}
+
+
+
+
+
+
+
 
 input {
     margin: 5px 0;

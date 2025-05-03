@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return { 
             name: document.getElementById('workout-name').innerHTML,
             exercises: currentExercises,
-            muscleScores: Object.fromEntries(Object.entries(muscleScores).filter(([k,v]) => v.score !== 0)), // filtering works to not fill up json, but the muscle status doesn't show zeros of the muscle has never been worked on
+            muscleScores: Object.fromEntries(Object.entries(muscleScores).filter(([k,v]) => v.score != 0)), // filtering works to not fill up json, but the muscle status doesn't show zeros of the muscle has never been worked on
             tiersCompleted: exerciseTierTracker,
             focusedMuscles: JSON.parse(document.getElementById('form-workout-focus-info').getAttribute('focusedMuscles')),
             setsInfo: document.getElementById('form-workout-sets-info').textContent

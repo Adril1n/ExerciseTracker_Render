@@ -1,14 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
     const fillMuscleStatus = async () => {
-        const container = document.getElementById('muscle-status-table').getElementsByTagName('tbody')[0];
+        const tableBody = document.getElementById('muscle-status-table').getElementsByTagName('tbody')[0];
 
         const response = await fetch('/api/muscle-scores');
         const scores = await response.json();
 
-        container.innerHTML = '';
+        tableBody.innerHTML = '';
+        var sum = Object.values(scores).reduce((parital, a) => parital + a, 0);
 
         for (const [muscle, score] of Object.entries(scores)) {
-            container.innerHTML += `<td>${muscle}</td><td>${score}</td>`
+            const tableRow = document.createElement('tr')
+
+            // NAME & SCORE
+            const name = document.createElement('td');
+            name.innerHTML = muscle;
+
+            const scoreElement = document.createElement('td');
+            scoreElement.innerHTML = score;
+
+            // tableBody.innerHTML += `<td>${muscle}</td><td>${score}</td>`
+            // BAR
+            const barTableData = document.createElement('td');
+            const barContainer = document.createElement('div');
+            barContainer.classList.add('bar');
+
+            const barFill = document.createElement('div');
+            barFill.classList.add('bar-fill');
+            
+            barFill.style.width = (score / sum)*100 + "%";
+
+            barContainer.appendChild(barFill);
+
+            barTableData.appendChild(barContainer)
+            // ADD
+            tableRow.appendChild(name);
+            tableRow.appendChild(scoreElement);
+            tableRow.appendChild(barTableData);
+
+            tableBody.appendChild(tableRow);
         }
     };
 

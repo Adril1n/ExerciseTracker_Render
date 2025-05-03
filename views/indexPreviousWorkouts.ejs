@@ -6,24 +6,127 @@
     <title>Exercise Tracker</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_previousWorkouts.css">
+    <script type="text/javascript" src="scriptMenu.js"></script>
     <script type="text/javascript" src="scriptPastWorkouts.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Past Workouts</h1>
-        <ul id="workout-list">
-            
-        </ul>
+    <section id="workouts">
+        <header>
+            <div class="title">Previous Workouts</div>
+            <div class="menu-container hidden">
+                <section class="navigation-item" onclick="window.location = '/create-workout'">
+                    <img src="/images/logos/workout_bright.png" class="logo">
+                    <div>New</div>
+                </section>
+                <section class="navigation-item" onclick="window.location = '/'">
+                    <img src="/images/logos/house_bright.png" class="logo">
+                    <div>Home</div>
+                </section>
+                <section class="navigation-item" onclick="window.location = '/muscle-status'">
+                    <img src="/images/logos/stats_bright.png" class="logo">
+                    <div>Stats</div>
+                </section>
+            </div>
+            <div class="menu-opener" defaultColor="var(--rSecondary)" onclick="toggleMenu(this.parentNode, this)"></div>
+        </header>
 
-        <div id="details-container" class="hidden">
+        <div class="content">
+            <!-- <h1 class="title">Past Workouts</h1> -->
+
+            <ul id="workout-list">
+                <span style="color: var(--secondary);">LOADING...</span>
+                 <!-- <li class="workout-item" onclick="showDetails({exercises: []})">
+                    <div>
+                        <div class="workout-item-title">Workout Rotation 150 - Saturday</div>
+                        <div class="workout-item-description">
+                            <span>2025-03-25 10:40am</span>
+                            <br>
+                            <span>Total Fatigue: 150</span>
+                        </div>
+                    </div>
+                    <div class="workout-item-buttons">
+                        <div>></div>
+                    </div>
+                 </li>
+                 <li class="workout-item">
+                    <div>
+                        <div class="workout-item-title">Workout Rotation 130 - Monday</div>
+                         <div class="workout-item-description">
+                             <span>2025-01-15 11:40am</span>
+                             <br>
+                             <span>Total Fatigue: 3</span>
+                         </div>
+                    </div>
+                    <div class="workout-item-buttons">
+                        <div>></div>
+                    </div>
+                 </li>
+                 <li class="workout-item">
+                    <div>
+                        <div class="workout-item-title">Workout Rotation 120 - Friday</div>
+                         <div class="workout-item-description">
+                             <span>2024-11-03 4:30am</span>
+                             <br>
+                             <span>Total Fatigue: 150</span>
+                         </div>
+                    </div>
+                    <div class="workout-item-buttons">
+                        <div class="arrow">></div>
+                    </div>
+                 </li> -->
+            </ul>
+        </div>
+    </section>
+
+    <section id="details" class="hidden">
+        <header>
+            <div id="details-name" class="title"></div>
+            <div class="menu-container hidden">
+                <section class="navigation-item">
+                    <!-- <img src="/images/logos/workout_bright.png" class="logo"> -->
+                    <div>Edit</div>
+                </section>
+                <section class="navigation-item">
+                    <!-- <img src="/images/logos/house_bright.png" class="logo"> -->
+                    <div>Delete</div>
+                </section>
+            </div>
+            <div class="menu-opener" defaultColor="var(--rSecondary)" onclick="toggleMenu(this.parentNode, this)"></div>
+
+            <div class="arrow" onclick="toggleDetails()">&#x25c0;</div>
+            <!-- <div id="details-edit-exercise" class="arrow" style="right: 20px;"></div> -->
+        </header>
+
+        <div class="content">
             <div id="details-exercises">
                 
             </div>
-            <div id="details-edit-exercise">Edit</div>
-            <div onclick="document.getElementById('details-container').classList.toggle('hidden');">Close</div>
         </div>
+        <!-- <div id="details-edit-exercise">Edit</div> -->
+    </section>
 
-        <footer><a href="/">Home</a></footer>
-    </div>
+    <!-- <ul id="workout-list">
+        
+    </ul> -->
+
+    <!-- <footer class="navigation">
+        <section class="navigation-item" onclick="window.location = '/create-workout'">
+            <img src="/images/logos/workout_bright.png" class="logo">
+            <div>New</div>
+        </section>
+        <section class="navigation-item" onclick="window.location = '/'">
+            <img src="/images/logos/house_bright.png" class="logo">
+            <div>Home</div>
+        </section>
+        <section class="navigation-item" onclick="window.location = '/muscle-status'">
+            <img src="/images/logos/stats_bright.png" class="logo">
+            <div>Stats</div>
+        </section>
+    </footer> -->
+
+    <script type="text/javascript">
+        // document.getElementsByClassName("navigation")[0].style.backgroundPosition = Math.round(Math.random() * 100) + "% " + Math.round(Math.random() * 100) + "%";
+    </script>
 </body>
 </html>

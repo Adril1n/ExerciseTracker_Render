@@ -1,0 +1,32 @@
+.title {
+    color: var(--pSecondary);
+}
+
+header {
+    color: var(--pSecondary);
+}
+
+.menu-opener { 
+    color: var(--secondary);
+}
+
+table {
+    overflow-y: scroll;
+}
+
+th {
+    color: var(--pPrimary);
+}
+
+td {
+    color: var(--secondary);
+    opacity: 0.8;
+}
+
+.bar {
+    border-color: var(--pPrimary);
+}
+
+.bar-fill {
+    background-color: var(--pSecondary);
+}

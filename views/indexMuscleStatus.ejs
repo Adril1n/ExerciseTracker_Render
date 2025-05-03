@@ -6,27 +6,49 @@
     <title>Exercise Tracker</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_muscleScores.css">
+
+    <script type="text/javascript" src="scriptMenu.js"></script>
 
     <script type="text/javascript" src="scriptMuscleStatus.js"></script>
     <script type="text/javascript" src="sorttable.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Muscle Status</h1>
+    <header>
+        <div class="title">Muscle Stats</div>
+        <div class="menu-container hidden">
+            <section class="navigation-item" onclick="window.location = '/create-workout'">
+                <img src="/images/logos/workout_bright.png" class="logo">
+                <div>New</div>
+            </section>
+            <section class="navigation-item" onclick="window.location = '/'">
+                <img src="/images/logos/house_bright.png" class="logo">
+                <div>Home</div>
+            </section>
+            <section class="navigation-item" onclick="window.location = '/previous-workouts'">
+                <img src="/images/logos/logs_bright.png" class="logo">
+                <div>Logs</div>
+            </section>
+        </div>
+        <div class="menu-opener" defaultColor="var(--pSecondary)" onclick="toggleMenu(this.parentNode, this)"></div>
+    </header>
 
+    <div class="content">
+        <!-- <ul id="workout-list"> -->
+            <!-- <span style="color: var(--secondary);">LOADING...</span> -->
         <table class="sortable" id="muscle-status-table">
             <thead>
                 <tr>
-                    <th>Muscle Name</th>
-                    <th>Score</th>
+                    <th style="width: 25%;">Muscle</th>
+                    <th style="width: 25%;">Score</th>
+                    <th style="width: 50%;">Bar %</th>
                 </tr>
             </thead>
 
             <tbody>
             </tbody>
         </table>
-
-        <footer><a href="/">Home (Cancel workout)</a></footer>
+        <!-- </ul> -->
     </div>
 </body>
 </html>
