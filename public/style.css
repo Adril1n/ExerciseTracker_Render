@@ -16,6 +16,7 @@
     /* -- COLOURS -- (r: red, g: green, p: purple)*/
     --background: #222426;
     --background-secondary: #202025;
+    --background-lighter: #2A2A30;
     --secondary: #c4c4cc;
 
     --rPrimary: #D91A3D;
@@ -41,6 +42,11 @@ body {
     top: 50px;
 /*    background-color: green;*/
 /*    padding-top: 1%;*/
+}
+
+table {
+    overflow-y: scroll;
+    width: 100%;
 }
 
 header {
@@ -180,12 +186,12 @@ header > .arrow {
 
 .modal-appear {
 /*    visibility: visible;*/
-    animation: appear 0.5s ease;
+    animation: appear 0.2s ease;
 }
 
 .modal-disappear {
 /*    visibility: hidden;*/
-    animation: disappear 1s ease;
+    animation: disappear 0.6s ease;
 }
 
 /*.modal-appear {
@@ -246,6 +252,67 @@ header > .arrow {
 }
 
 
+
+
+.tab-container {
+    position: relative;
+    width: 100%;
+    height: 2em;
+    top: 10vh;
+/*    background-color: green;*/
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    overflow-x: scroll;
+
+    margin-bottom: 5%;
+
+    background-color: var(--background-secondary);
+    padding-top: 10px;
+
+    border-top: 1px solid var(--rSecondary);
+/*    border-bottom: 1px solid var(--secondary);*/
+
+    color: var(--rSecondary);
+}
+
+.tab {
+/*    background-color: blue;*/
+}
+
+.tab[active~="true"] {
+/*    background-color: yellow;*/
+    border-bottom: 3px solid var(--rPrimary);
+}
+
+.info-container {
+    background-color: var(--background);
+
+    display: flex;
+    flex-direction: column;
+
+/*    width: 100%;*/
+    height: 100%;
+
+/*    background-color: blue;*/
+
+/*    padding: 5%;*/
+}
+
+.info-box {
+    width: 100%;
+    color: var(--secondary);
+    overflow-x: scroll;
+
+    background-color: var(--background-lighter);
+
+    margin-top: 5%;
+}   
+
+.info-box:first-child {
+    margin-top: 0;
+}
 
 
 .bar {

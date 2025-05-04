@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         weight = Math.max(parseFloat(weight), 0)
 
         if (exerciseName && fatigue && reps && (weight >= 0) && exerciseType) {
-            createExercise({name: exerciseName, fatigue: fatigue, reps: reps, weight: weight, type: exerciseType});
+            createExercise({name: exerciseName, fatigue: fatigue, reps: reps, weight: weight, type: exerciseType, unit: document.getElementById('weight').getAttribute('unit')});
         } 
         else {
             alert('Please fill in all fields.');
@@ -254,6 +254,12 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify(getCurrentWorkout())
         });
+
+        if (response.ok) {
+            alert('Workout saved successfully!');
+        } else {
+            alert('Failed to save workout.');
+        }
     }
 
     const getCurrentWorkout = () => {

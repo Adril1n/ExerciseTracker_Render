@@ -10,10 +10,6 @@ header {
     color: var(--secondary);
 }
 
-table {
-    overflow-y: scroll;
-}
-
 th {
     color: var(--pPrimary);
     font-size: 1.1rem;

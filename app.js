@@ -205,8 +205,8 @@ app.post('/api/workouts', async (req, res) => {
 app.post('/api/workouts/:index', async (req, res) => {
     const index = parseInt(req.params.index, 10);
     const workouts = await loadWorkouts();
+
     if (index >= 0 && index < workouts.length) {
-        // workouts[index] = req.body;
         addWorkout(workouts[index].name, req.body);
     }
 
@@ -290,6 +290,7 @@ app.get('/', (req, res) => {
 
 app.get('/create-workout', async (req, res) => {
     var workoutName = req.query.workout;
+    var index = req.query.index;
     var workoutToLoad = undefined;
     if (workoutName != null)
     {
@@ -304,6 +305,7 @@ app.get('/create-workout', async (req, res) => {
     }
 
     // workout = workouts[workout];
+    workoutToLoad['index'] = index;
     res.render('indexCreateWorkout', {loadWorkout:encodeURIComponent(JSON.stringify(workoutToLoad))});
     // res.render('indexCreateWorkout');
 });

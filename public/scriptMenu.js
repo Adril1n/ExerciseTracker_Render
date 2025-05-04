@@ -29,6 +29,6 @@ function toggleModal(modal) {
         setTimeout(() => {
             modal.classList.add('hidden');
             canToggleModal = true;
-        }, 1000);
+        }, 600);
     }
 }
