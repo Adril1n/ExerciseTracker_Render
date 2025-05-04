@@ -11,3 +11,24 @@ function toggleMenu(container, toggleElement) {
         toggleElement.style.color = toggleElement.getAttribute('defaultColor');
     }
 }
+
+canToggleModal = true;
+
+function toggleModal(modal) {
+    if (!canToggleModal) return;
+
+    if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        modal.classList.remove('modal-disappear');
+        modal.classList.add('modal-appear');
+    }
+    else {
+        modal.classList.remove('modal-appear');
+        modal.classList.add('modal-disappear');
+        canToggleModal = false;
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            canToggleModal = true;
+        }, 1000);
+    }
+}

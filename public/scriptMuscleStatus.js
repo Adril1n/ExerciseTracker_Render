@@ -1,3 +1,9 @@
+const fillBars = () => {
+    document.querySelectorAll('.bar-fill').forEach(function(element) {
+        element.style.width = element.getAttribute('fillPercentage')
+    });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const fillMuscleStatus = async () => {
         const tableBody = document.getElementById('muscle-status-table').getElementsByTagName('tbody')[0];
@@ -27,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const barFill = document.createElement('div');
             barFill.classList.add('bar-fill');
             
-            barFill.style.width = (score / sum)*100 + "%";
+            barFill.setAttribute("fillPercentage", (score / sum)*100 + "%");
 
             barContainer.appendChild(barFill);
 
@@ -39,7 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             tableBody.appendChild(tableRow);
         }
+
+        setTimeout(fillBars, 10);
     };
 
     fillMuscleStatus();
+    // fillBars();
 });

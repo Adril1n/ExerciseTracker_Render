@@ -16,11 +16,16 @@ table {
 
 th {
     color: var(--pPrimary);
+    font-size: 1.1rem;
 }
 
 td {
     color: var(--secondary);
     opacity: 0.8;
+}
+
+tr:nth-child(even) {
+    background-color: var(--background-secondary);
 }
 
 .bar {
@@ -29,4 +34,5 @@ td {
 
 .bar-fill {
     background-color: var(--pSecondary);
+    transition: width 1.2s;
 }

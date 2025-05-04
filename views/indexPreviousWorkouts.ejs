@@ -92,7 +92,7 @@
                     <div>Delete</div>
                 </section>
             </div>
-            <div class="menu-opener" defaultColor="var(--rSecondary)" onclick="toggleMenu(this.parentNode, this)"></div>
+            <div class="menu-opener" onclick="toggleModal(document.getElementById('options-modal'))"></div>
 
             <div class="arrow" onclick="toggleDetails()">&#x25c0;</div>
             <!-- <div id="details-edit-exercise" class="arrow" style="right: 20px;"></div> -->
@@ -102,6 +102,14 @@
             <div id="details-exercises">
                 
             </div>
+        </div>
+
+        <div class="modal hidden" id="options-modal">
+            <div class="modal-option-container">
+                <div class="modal-option" id="option-edit"><p>Edit</p></div>
+                <div class="modal-option" id="option-delete"><p style="color: red;">Delete</p></div>
+            </div>
+            <div class="modal-cancel" onclick="toggleModal(document.getElementById('options-modal'))"><p>Cancel</p></div>
         </div>
         <!-- <div id="details-edit-exercise">Edit</div> -->
     </section>

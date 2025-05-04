@@ -17,6 +17,9 @@ header {
 }
 
 
+.modal-option {
+    border-color: var(--rSecondary);
+}
 
 
 #workout-list {

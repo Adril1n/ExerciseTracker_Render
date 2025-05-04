@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch('/api/workouts');
         const workouts = await response.json();
         workoutList.innerHTML = ''; // Clear the list before updating
+
+        if (workouts.length === 0) {
+            workoutList.innerHTML = `<span style="color: var(--secondary);">No Workout found...</span>`;
+            return;
+        }
+
         workouts.forEach((workout, index) => {
             const li = document.createElement('li');
             li.classList.add('workout-item')
@@ -39,28 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // BUTTONS
             workoutButtons.innerHTML = `<div class="arrow">&#x25b6</div>`
 
-            
-            // Create a delete button
-            // const deleteButton = document.createElement('button');
-            // deleteButton.textContent = 'Delete';
-            // deleteButton.addEventListener('click', async () => {
-            //     const confirmDelete = confirm('Are you sure you want to delete this workout?');
-            //     if (confirmDelete) {
-            //         await deleteWorkout(index);
-            //         updateWorkoutList(); // Refresh the workout list
-            //     }
-            // });
-
-            // Create a details button
-            // const detailsButton = document.createElement('button');
-            // detailsButton.textContent = 'View Details';
-            // detailsButton.addEventListener('click', () => {
-            //     showDetails(workout, index);
-            // });
-
-            // li.appendChild(deleteButton);
-            // li.appendChild(detailsButton);
-            li.addEventListener('click', () => {showDetails(workout)});
+            li.addEventListener('click', () => {showDetails(workout, index)});
 
             li.appendChild(workoutBody);
             li.appendChild(workoutButtons);
@@ -75,6 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!response.ok) {
             alert('Failed to delete workout.');
+        }
+        else {
+            alert('Workout deleted!');
+            window.location.replace(`/previous-workouts`);
         }
     };
 
@@ -97,13 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleDetails();
         // workout['index'] = index;
         detailsContainer.setAttribute('workout', workout.name);
+
+        document.getElementById('option-edit').addEventListener('click', editWorkout);
+        document.getElementById('option-delete').addEventListener('click', () => {deleteWorkout(index)});
     };
 
     const editWorkout = () => {
         // redirect to createWorkout but with a workout variable, check in indexCreateWorkout if there is a workout variable and fill the index accordingly
 
         // window.location.replace(`/create-workout?workout=${encodeURIComponent(document.getElementById('details-container').getAttribute('workout'))}`);
-        window.location.replace(`/create-workout?workout=${document.getElementById('details-container').getAttribute('workout')}`);
+        window.location.replace(`/create-workout?workout=${document.getElementById('details').getAttribute('workout')}`);
     };
 
     // document.getElementById('details-edit-exercise').addEventListener('click', editWorkout)
