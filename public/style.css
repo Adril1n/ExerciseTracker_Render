@@ -1,7 +1,10 @@
+/*
 
-/* CONTIANS
+CONTIANS
     - root, colours, etc.
     - body
+    - content
+    - header
     - index-css
     - logos
     - navigation
@@ -51,13 +54,14 @@ table {
 
 header {
     position: fixed;
-    height: 10%;
+    height: 8%;
     width: 100%;
     top: 0px;
     background-color: var(--background-secondary);
 
     font-size: 1.1rem;
     color: var(--secondary);
+    z-index: 100;
 
 /*    padding: 0px 5px 0 5px;*/
 /*    margin-bottom: 8%;*/
@@ -82,6 +86,11 @@ header {
     all: unset;
 
     position: absolute;
+    cursor: pointer;
+}
+.menu-opener:after {
+    content: '\2807';
+    font-size: 2rem;
 }
 
 header > .menu-opener {
@@ -89,10 +98,50 @@ header > .menu-opener {
     top: 15%;
 }
 
-.menu-opener:after {
-    content: '\2807';
+.menu-setting {
+    all: unset;
+
+    position: absolute;
+    cursor: pointer;
+}
+.menu-setting:after {
+    content: '\2699';
     font-size: 2rem;
 }
+
+.menu-setting:hover {
+    animation: whir 1s ease;
+    transform-origin: center;
+}
+
+@keyframes whir {
+    from {transform: rotate(0)}
+    to {transform: rotate(90deg)}
+}
+
+header > .menu-setting {
+    right: 2%;
+    top: 12%;
+}
+
+
+
+.menu-close {
+    all: unset;
+
+    position: absolute;
+    cursor: pointer;
+}
+.menu-close:after {
+    content: '\00d7';
+    font-size: 2.5rem;
+}
+
+header > .menu-close {
+    left: 2%;
+    top: 5%;
+}
+
 
 .arrow {
     color: var(--secondary);
@@ -292,26 +341,36 @@ header > .arrow {
     display: flex;
     flex-direction: column;
 
-/*    width: 100%;*/
-    height: 100%;
+    height: 96%;
+    width: 96%;
 
-/*    background-color: blue;*/
-
-/*    padding: 5%;*/
+    padding: 2%;
 }
 
 .info-box {
-    width: 100%;
+    width: calc(100% - 20px);
     color: var(--secondary);
-    overflow-x: scroll;
 
     background-color: var(--background-lighter);
 
     margin-top: 5%;
-}   
+    padding: 10px;
+    
+    border-radius: 12px;
+}
 
 .info-box:first-child {
     margin-top: 0;
+}
+
+.info-box .title {
+    font-size: 1.1rem;
+    text-align: left;
+    padding: 0px;
+}
+
+.info-content {
+    font-size: 0.9rem;
 }
 
 

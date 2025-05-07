@@ -16,15 +16,25 @@ function getWeightIntervalsAsArray(intervals) {
     return options;
 };
 
+function toggleFilterForm() {
+    document.getElementById('filterForm').classList.toggle('hidden');
+    document.getElementById('select-exercise-main').classList.toggle('hidden');
+    // toggleModal(document.getElementById('options-modal'));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const submitFilterForm = async (e) => {
-        e.preventDefault();
+        if (e) {
+            e.preventDefault();
+            toggleFilterForm();
+        }
 
         let weightTypes = Array.from(document.getElementById('weightTypes').selectedOptions).map(option => option.value);
         let muscles = Array.from(document.getElementById('muscles').selectedOptions).map(option => option.value);
 
         const response = await fetch(`/api/exercises?weightTypes=${weightTypes.join(',')}&muscles=${muscles.join(',')}`);
         const exercises = await response.json();
+
 
         fillExerciseTable(exercises);
     };
@@ -109,18 +119,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // document.getElementById('muscles').selectedOptions = focusedMuscles;
     };
 
-    const showSelectExercise = () => {
-        document.getElementById('select-exercise-container').classList.toggle('hidden'); 
-        document.getElementById('workout-container').classList.toggle('hidden');
+    const showSelectExercise = async () => {
+        document.getElementById('section-select-exercise').classList.toggle('hidden'); 
+        document.getElementById('section-add-exercise').classList.toggle('hidden');
 
-        loadFilters();
+        await loadFilters();
+        // document.getElementById('filterForm').submit();
+        submitFilterForm();
     };
 
 
     const selectExercise = async (exercise) => {
         document.getElementById('selectedExercise').innerHTML = exercise.name;
-        document.getElementById('select-exercise-container').classList.toggle('hidden');
-        document.getElementById('workout-container').classList.toggle('hidden');
+        document.getElementById('section-select-exercise').classList.toggle('hidden');
+        document.getElementById('section-add-exercise').classList.toggle('hidden');
 
         const response = await fetch(`/api/exercises/weight-class?name=${exercise.weightClass}`);
         const weightClass = await response.json();
@@ -139,7 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // loadFilters();
 
-    document.getElementById('select-new-exercise').addEventListener('click', showSelectExercise)
+    document.getElementById('select-new-exercise').addEventListener('click', showSelectExercise);
+    document.getElementById('select-exercise-close').addEventListener('click', showSelectExercise);
 
     document.getElementById('filterForm').addEventListener('submit', submitFilterForm);
     document.getElementById('select-exercise-search').onkeyup = filterWithSearch;

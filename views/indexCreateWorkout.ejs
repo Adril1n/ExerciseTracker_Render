@@ -6,133 +6,221 @@
     <title>Exercise Tracker</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_workout.css">
 
+    <script type="text/javascript" src="scriptMenu.js"></script>
+    
     <script type="text/javascript" src="scriptCreateWorkout.js"></script>
     <script type="text/javascript" src="scriptEditWorkout.js"></script>
     <script type="text/javascript" src="scriptSelectExercise.js"></script>
+
     <script type="text/javascript" src="sorttable.js"></script>
 </head>
 <body>
-    <div class="container">
-        <form id="create-workout-form">
-            <h1>Create New Workout</h1>
-            <label for="workout-title">Workout Title:</label>
-            <input type="text" id="workout-title" placeholder="Enter workout title" required>
-
-            <label for="workout-muscle-presets-select">Muscle Presets:</label>
-            <select id="workout-muscle-presets-select">
-                <option value="">Select a Muscle Presets</option>
-            </select>
-
-            <div onclick="document.getElementById('workout-muscle-focus-table').classList.toggle('hidden')">Table</div>
-            <table id="workout-muscle-focus-table" class="hidden sortable">
-                <thead>
-                    <tr>
-                        <th>Muscle Name</th>
-                        <th>Muscle Score</th>
-                        <th>Primary?</th>
-                        <th>Secondary?</th>
-                    </tr>
-                </thead>
-
-                <tbody id="workout-muscle-focus-table-body">
-                </tbody>
-            </table>
-
-            <br>
-            <br>
-
-            <div id="form-workout-info">
-                <div id="form-workout-sets-info"></div>
-                <div id="form-workout-focus-info"></div>
+    <section id="section-create-workout">
+         <header>
+            <!-- <div class="menu-close" onclick="window.location = '/'"></div> -->
+            <div class="title">Create New Workout</div>
+            <div class="menu-container hidden">
+                <section class="navigation-item" onclick="window.location = '/previous-workouts'">
+                    <img src="/images/logos/logs_bright.png" class="logo">
+                    <div>Logs</div>
+                </section>
+                <section class="navigation-item" onclick="window.location = '/'">
+                    <img src="/images/logos/house_bright.png" class="logo">
+                    <div>Home</div>
+                </section>
+                <section class="navigation-item" onclick="window.location = '/muscle-status'">
+                    <img src="/images/logos/stats_bright.png" class="logo">
+                    <div>Stats</div>
+                </section>
             </div>
-            <button type="submit">Create Workout</button>
-        </form>
+            <div class="menu-opener" defaultColor="var(--gPrimary)" onclick="toggleMenu(this.parentNode, this)"></div>
+        </header>
 
-        <div id="select-exercise-container" class="hidden">
-            <form id="filterForm">
-                <label for="weightTypes">Weight Equipment:</label>
-                <select id="weightTypes" multiple>
-                </select>
+        <div class="content">
+            <form class="info-container" id="create-workout-form">
+                <div class="info-box">
+                    <label class="title">Summary</label>
+                    <div id="form-workout-info" class="info-content">
+                        <div id="form-workout-sets-info"></div>
+                        <div id="form-workout-focus-info"></div>
+                    </div>
+                </div>
 
-                <label for="muscles">Muscles:</label>
-                <select id="muscles" multiple>
-                </select>
+                <div class="info-box">
+                    <label class="title" for="workout-title">Workout Title</label>
+                    <input type="text" id="workout-title" placeholder="Enter workout title" required>
+                </div>
 
-                <button id="filter-submit" type="submit">Filter</button>
+                <div class="info-box">
+                    <label class="title" for="workout-muscle-presets-select">Muscle Presets</label>
+                    <select id="workout-muscle-presets-select">
+                        <option value="">Select a Muscle Presets</option>
+                    </select>
+
+                    <div onclick="document.getElementById('workout-muscle-focus-table').classList.toggle('hidden')">Table</div>
+                    <table id="workout-muscle-focus-table" class="hidden sortable">
+                        <thead>
+                            <tr>
+                                <th>Muscle Name</th>
+                                <th>Muscle Score</th>
+                                <th>Primary?</th>
+                                <th>Secondary?</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="workout-muscle-focus-table-body">
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <button type="submit">Create Workout</button>
             </form>
-
-            <input type="text" id="select-exercise-search" placeholder="Search for an Exercise...">
-
-            <table id="exerciseTable" class="sortable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Primary Muscles</th>
-                        <th>Secondary Muscles</th>
-                        <th>Weight Types</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody id="exerciseTableBody">
-                </tbody>
-            </table>
         </div>
+    </section>
 
-        <div id="workout-container" class="hidden">
-            <h1 id="workout-name"></h1>
-            <h2>Workout Info</h2>
-            <div id="workout-info">
-                <div id="workout-sets-info"></div>
-                <div id="workout-muscle-score-info">
-                    <div id="workout-muscle-score-info-primary"></div>
-                    <div id="workout-muscle-score-info-secondary"></div>
-                    <div id="workout-muscle-score-info-standard"></div>
+    <section id="section-edit-workout" class="hidden">
+        <header>
+            <div class="menu-close" onclick="window.location = '/'"></div>
+            <div class="title" id="workout-name">[WORKOUT NAME]</div>
+            <div class="menu-opener" onclick="toggleModal(document.getElementById('options-modal'))"></div>
+        </header>
+
+        <div class="content">
+            <div class="info-container" id="workout-container">
+                <div class="info-box">
+                    <div class="title">Workout Info</div>
+                    <div id="workout-info">
+                        <div id="workout-sets-info"></div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="title">Muscle Scores</div>
+                    <div id="workout-muscle-score-info">
+                        <div id="workout-muscle-score-info-primary"></div>
+                        <div id="workout-muscle-score-info-secondary"></div>
+                        <div id="workout-muscle-score-info-standard"></div>
+                    </div>
+                </div>
+            
+                <div class="info-box">
+                    <div class="title">Exercises</div>
+                    <div id="exerciseTierTracker">No exercise yet</div>
+                    <ul id="exerciseList"></ul>
                 </div>
             </div>
-
-            <h2>Add Exercise</h2>
-
-            <div id="select-new-exercise">New Exercise</div>
-            <div id="selectedExercise"></div>
-
-            <select id="exercise-type-select">
-                <option value="">Select a Exercise Type</option>
-                <option value="Strength (Tier 1)">Strength (Tier 1)</option>
-                <option value="Strength (Tier 2)">Strength (Tier 2)</option>
-                <option value="Holds (Tier 1)">Holds (Tier 1)</option>
-                <option value="Holds (Tier 2)">Holds (Tier 2)</option>
-            </select>
-
-            <input type="number" id="reps" placeholder="Reps" min="1">
-            <select id="weight" unit="null">
-                <option value="">Weight (Select an Exercise)</option>
-            </select>
-
-            <select id="fatigue">
-                <option value="">Fatigue (X / 10)</option>
-                <% for(var i = 1; i <= 10; i++) { %>
-                    <option value="<%= i%>"><%= i%></option>
-                <% } %>
-            </select>
-
-            <div id="recent-values">
-                <p>Select a tier to see the most recent values.</p>
-            </div>
-            <div id="recent-values-fill">Fill with recent Values</div>
-            
-            <h3 id="clearExerciseFields">Clear</h3>
-
-            <button id="addExercise">Add Exercise</button>
-            <button id="saveWorkout">Save Workout</button>
-
-            <h2>Exercises</h2>
-            <div id="exerciseTierTracker"></div>
-            <ul id="exerciseList"></ul>
         </div>
 
-        <footer><a href="/">Home (Cancel workout)</a></footer>
-    </div>
+        <div class="modal hidden" id="options-modal">
+            <div class="modal-option-container">
+                <div class="modal-option" onclick="toggleAddExerciseSection(); toggleModal(document.getElementById('options-modal'));"><p>Add Exercise</p></div>
+                <div class="modal-option" id="deleteWorkout"><p style="color: red;">Delete</p></div>
+                <div class="modal-option" id="saveWorkout"><p>Save</p></div>
+            </div>
+            <div class="modal-cancel" onclick="toggleModal(document.getElementById('options-modal'))"><p>Cancel</p></div>
+        </div>
+    </section>
+
+    <section id="section-add-exercise" class="hidden">
+        <header>
+            <div class="menu-close" onclick="toggleAddExerciseSection()"></div>
+            <div class="title" id="workout-name">Add Exercise</div>
+            <!-- <div class="menu-opener" onclick="toggleModal(document.getElementById('options-modal'))"></div> -->
+        </header>
+
+        <div class="content">
+            <div class="info-container" id="workout-container">
+                <div class="info-box">
+                    <div id="select-new-exercise">New Exercise</div>
+                    <div id="selectedExercise"></div>
+
+                    <select id="exercise-type-select">
+                        <option value="">Select a Exercise Type</option>
+                        <option value="Holds (Tier 1)">Holds (Tier 1)</option>
+                        <option value="Holds (Tier 2)">Holds (Tier 2)</option>
+                        <option value="Strength (Tier 1)">Strength (Tier 1)</option>
+                        <option value="Strength (Tier 2)">Strength (Tier 2)</option>
+                    </select>
+
+                    <input type="number" id="reps" placeholder="Reps" min="1">
+                    <select id="weight" unit="null">
+                        <option value="">Weight (Select an Exercise)</option>
+                    </select>
+
+                    <select id="fatigue">
+                        <option value="">Fatigue (X / 10)</option>
+                        <% for(var i = 10; i >= 1; i--) { %>
+                            <option value="<%= i%>"><%= i%></option>
+                        <% } %>
+                    </select>
+
+                    <div id="recent-values">
+                        <p>Select a tier to see the most recent values.</p>
+                    </div>
+                    <div id="recent-values-fill">Fill with recent Values</div>
+                    
+                    <h3 id="clearExerciseFields">Clear</h3>
+
+                    <button id="addExercise">Add Exercise</button>  
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-select-exercise" class="hidden">
+        <header>
+            <div class="menu-close" id="select-exercise-close" ></div>
+            <div class="title">Select an exercise</div>
+            <div class="menu-setting" onclick="toggleFilterForm()"></div>
+        </header>
+
+        <div class="content">
+            <div id="select-exercise-container">
+                <form id="filterForm" class="hidden">
+                    <label for="weightTypes">Weight Equipment:</label>
+                    <select id="weightTypes" multiple>
+                    </select>
+
+                    <label for="muscles">Muscles:</label>
+                    <select id="muscles" multiple>
+                    </select>
+
+                    <button id="filter-submit" type="submit">Filter</button>
+                </form>
+
+                <div id="select-exercise-main">
+                    <input type="text" id="select-exercise-search" placeholder="Search for an Exercise...">
+
+                    <table id="exerciseTable" class="sortable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Primary Muscles</th>
+                                <th>Secondary Muscles</th>
+                                <th>Weight Types</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tbody id="exerciseTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+<!--         <div class="modal hidden" id="options-modal">
+            <div class="modal-option-container">
+                <div class="modal-option" onclick="toggleFilterForm();toggleModal(document.getElementById('options-modal'));"><p>Filter</p></div>
+            </div>
+            <div class="modal-cancel" onclick="toggleModal(document.getElementById('options-modal'))"><p>Cancel</p></div>
+        </div> -->
+    </section>
+
+        <!-- <footer><a href="/">Home (Cancel workout)</a></footer> -->
+
     <% if (loadWorkout != 'undefined') { %>
         <script type="text/javascript">
             loadWorkout = JSON.parse(decodeURIComponent('<%= loadWorkout %>'));

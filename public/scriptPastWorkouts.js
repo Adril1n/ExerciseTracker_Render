@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const deleteWorkout = async (index) => {
-        const response = await fetch(`/api/workouts/${index}`, {
+    const deleteWorkout = async (name) => {
+        const response = await fetch(`/api/workouts/${name}`, {
             method: 'DELETE'
         });
 
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsContainer.setAttribute('workout', workout.name);
 
         document.getElementById('option-edit').addEventListener('click', editWorkout);
-        document.getElementById('option-delete').addEventListener('click', () => {deleteWorkout(index)});
+        document.getElementById('option-delete').addEventListener('click', () => {deleteWorkout(workout.name)});
 
         //DETAIL TABS
         const dateString = new Date(workout.date).toLocaleString("se-SE")

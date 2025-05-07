@@ -73,6 +73,21 @@ function updateMuscleScoreHTML() {
     }
 }
 
+function toggleAddExerciseSection() {
+    document.getElementById('section-edit-workout').classList.toggle('hidden');
+    document.getElementById('section-add-exercise').classList.toggle('hidden');
+}
+
+function reset() {
+    sessionStorage.removeItem('storedWorkout');
+    // currentExercises.length = 0; // Clear the exercises array
+    // exerciseList.innerHTML = ''; // Clear the exercise list
+
+    // reload();
+
+    // updateWorkoutList(); // Refresh the workout list
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const recentValuesDisplay = document.getElementById('recent-values');
     const exerciseSelect = document.getElementById('selectedExercise');
@@ -113,10 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentExercises.push(exercise);
 
         const li = document.createElement('li');
-        li.textContent = formatExerciseDescription(currentExercises[currentExercises.length-1]);
+        li.textContent = formatExerciseDescription(exercise);
         li.addEventListener('click', () => {
             fillExerciseFields(exerciseName, fatigue, reps, weight, exerciseType);
-        })
+        });
 
         // Create remove button
         const removeButton = document.createElement('button');
@@ -146,6 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateExerciseTracker();
         updateMuscleScores(exercise);
+
+        // toggleAddExerciseSection();
+        storeCurrentWorkout();
     };
 
     const updateMuscleScores = (exercise) => {
@@ -194,6 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('reps').value = reps;
         weightElement.value = weight;
         document.getElementById('exercise-type-select').value = exerciseType;
+
+        toggleAddExerciseSection();
     };
 
     const clearExerciseFields = () => {
@@ -205,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const formatExerciseDescription = (e) => {
-        return `${e.name} (Reps: ${e.reps}, Weight: ${e.weight} ${document.getElementById('weight').getAttribute('unit')}), Fatigue: ${e.fatigue}/10, Type: ${e.type}`;
+        return `${e.name} (Reps: ${e.reps}, Weight: ${e.weight} ${e.unit}), Fatigue: ${e.fatigue}/10, Type: ${e.type}`;
     };
 
     const fillWithRecentValues = () => {
@@ -235,18 +255,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.ok) {
             alert('Workout saved successfully!');
-            // currentExercises.length = 0; // Clear the exercises array
-            // exerciseList.innerHTML = ''; // Clear the exercise list
 
-            // reload();
-
-            // updateWorkoutList(); // Refresh the workout list
+            reset();
         } else {
             alert('Failed to save workout.');
         }
     };
 
     const saveEditedWorkout = async () => {
+        loadWorkout.date = new Date();
+
         const response = await fetch(`/api/workouts/${loadWorkout.index}`, {
             method: 'POST',
             headers: {
@@ -257,9 +275,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.ok) {
             alert('Workout saved successfully!');
+
+            reset();
         } else {
             alert('Failed to save workout.');
         }
+    }
+
+    const deleteWorkout = async () => {
+        const workout = getCurrentWorkout()
+        const response = await fetch(`/api/workouts/${workout.name}`, {
+            method: 'DELETE'
+        });
+
+        reset();
+
+        alert('Workout deleted!');
+        window.location.replace(`/`);
+
+        // if (!response.ok) {
+        //     alert('Failed to delete workout.');
+        // }
+        // else {
+        //     alert('Workout deleted!');
+        //     window.location.replace(`/`);
+        // }
     }
 
     const getCurrentWorkout = () => {
@@ -284,8 +324,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('saveWorkout').addEventListener('click', saveEditedWorkout);
     };
 
-    document.getElementById('addExercise').addEventListener('click', addExercise);
+    const storeCurrentWorkout = () => {
+        sessionStorage.setItem('storedWorkout', JSON.stringify(getCurrentWorkout()));
+    };
+
+    document.getElementById('addExercise').addEventListener('click', () => {addExercise(); toggleAddExerciseSection();});
     document.getElementById('saveWorkout').addEventListener('click', saveWorkout);
+    document.getElementById('deleteWorkout').addEventListener('click', deleteWorkout);
     document.getElementById('clearExerciseFields').addEventListener('click', clearExerciseFields);
     exerciseTypeSelect.addEventListener('change', updatePreviousExerciseValues);
 
@@ -294,6 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // window.onbeforeunload = function () {
     //     return "are you sure you want to leave? workout will be deleted";
     // };
+    let storedWorkout = JSON.parse(sessionStorage.getItem('storedWorkout'));
+
+    if (!loadWorkout) loadWorkout = storedWorkout;
 
     if (loadWorkout) loadWorkoutToEdit();
 });

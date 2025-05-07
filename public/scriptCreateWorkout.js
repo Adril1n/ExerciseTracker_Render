@@ -29,7 +29,7 @@ async function initMuscleScores(focusData) {
 }
 
 async function startWorkout(workoutName, setsInfo, focusInfo) {
-    document.getElementById('create-workout-form').classList.toggle('hidden');
+    document.getElementById('section-create-workout').classList.toggle('hidden');
 
 
     document.getElementById('workout-name').innerHTML = workoutName;
@@ -37,7 +37,7 @@ async function startWorkout(workoutName, setsInfo, focusInfo) {
     document.getElementById('workout-sets-info').innerHTML = setsInfo;
     await initMuscleScores(focusInfo);
 
-    document.getElementById('workout-container').classList.toggle('hidden');
+    document.getElementById('section-edit-workout').classList.toggle('hidden');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -194,5 +194,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load Workoutname
     const rotationNum = Math.floor((new Date() - new Date('2022-07-21')) / (1000 * 60 * 60 * 24 * 7)) + 2;
     document.getElementById('workout-title').value = `Workout Rotation ${rotationNum} - ${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][new Date().getDay()]}`;
-    document.getElementById('form-workout-sets-info').textContent = "Sets: " + ((rotationNum % 2) != 0 ? "Holds (Tier 1), Strength (Tier 1), Strength (Tier 2)" : "Holds (Tier 1), Strength (Tier 1), Holds (Tier 2)");
+    document.getElementById('form-workout-sets-info').textContent = ((rotationNum % 2) != 0 ? "Holds (Tier 1), Strength (Tier 1), Strength (Tier 2)" : "Holds (Tier 1), Strength (Tier 1), Holds (Tier 2)");
 });

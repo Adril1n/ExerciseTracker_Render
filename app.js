@@ -18,9 +18,15 @@ app.set('views', 'views');
 
 const workoutsDocument = firestore.doc("Workouts/e3hmbDO7Nmd6OdxOg6qH");
 
+
 // TOOD: Change to https://www.lyfta.app/exercises
 
 // TODO: CSS, and to fit phone screen
+
+// TODO: change table filling to use table.insertRow() and ..insertCell() instead of strings (maybe)
+
+// TODO: change images to .webp, add "role='presentation'" and alt-attributes
+// TODO: change div.content to "<main>"
 
 // TODO: Quality of Life
     // TODO: Maybe highlight in the select-exercise what muscles are the ones that match the filter
@@ -251,19 +257,29 @@ app.get('/api/exercises/recent/:name/:type', async (req, res) => {
 });
 
 
-// Delete a workout by index
-app.delete('/api/workouts/:index', async (req, res) => {
-    const index = parseInt(req.params.index, 10);
+// Delete a workout by name
+app.delete('/api/workouts/:name', async (req, res) => {
+    // const index = parseInt(req.params.index, 10);
+    const name = req.params.name;
     const workouts = await loadWorkouts();
 
-    if (isNaN(index) || index < 0 || index >= workouts.length) {
+    var exists = false;
+    for (const workout of workouts) {
+        if (workout.name == name) {
+            exists = true;
+            break;
+        }
+    }
+
+    if (!exists) {
         return res.status(404).json({ error: 'Workout not found' });
     }
 
     // workouts.splice(index, 1); // Remove the workout at the specified index
     // console.log(workouts);
     // saveWorkouts(workouts);
-    await deleteWorkout(workouts[index].name);
+
+    await deleteWorkout(name);
     res.status(204).send(); // No content to send back
 });
 
@@ -302,10 +318,11 @@ app.get('/create-workout', async (req, res) => {
                 break;
             }
         } 
+
+        workoutToLoad["index"] = index;
     }
 
     // workout = workouts[workout];
-    workoutToLoad['index'] = index;
     res.render('indexCreateWorkout', {loadWorkout:encodeURIComponent(JSON.stringify(workoutToLoad))});
     // res.render('indexCreateWorkout');
 });
