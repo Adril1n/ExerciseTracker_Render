@@ -178,20 +178,27 @@
         </header>
 
         <div class="content">
-            <div id="select-exercise-container">
-                <form id="filterForm" class="hidden">
-                    <label for="weightTypes">Weight Equipment:</label>
-                    <select id="weightTypes" multiple>
-                    </select>
+            <div id="select-exercise-container" class="info-container">
+                <div class="hidden" id="filter-container">
+                    <form id="filterForm" class="info-container">
+                        <div class="info-box">
+                            <label for="weightTypes">Weight Equipment:</label>
+                            <br>
+                            <select id="weightTypes" multiple>
+                            </select>
+                        </div>
+                        <div class="info-box">
+                            <label for="muscles">Muscles:</label>
+                            <br>
+                            <select id="muscles" multiple>
+                            </select>
+                        </div>
 
-                    <label for="muscles">Muscles:</label>
-                    <select id="muscles" multiple>
-                    </select>
+                        <button id="filter-submit" type="submit">Filter</button>
+                    </form>
+                </div>
 
-                    <button id="filter-submit" type="submit">Filter</button>
-                </form>
-
-                <div id="select-exercise-main">
+                <div class="info-box" id="select-exercise-main">
                     <input type="text" id="select-exercise-search" placeholder="Search for an Exercise...">
 
                     <table id="exerciseTable" class="sortable">
@@ -210,16 +217,7 @@
                 </div>
             </div>
         </div>
-
-<!--         <div class="modal hidden" id="options-modal">
-            <div class="modal-option-container">
-                <div class="modal-option" onclick="toggleFilterForm();toggleModal(document.getElementById('options-modal'));"><p>Filter</p></div>
-            </div>
-            <div class="modal-cancel" onclick="toggleModal(document.getElementById('options-modal'))"><p>Cancel</p></div>
-        </div> -->
     </section>
-
-        <!-- <footer><a href="/">Home (Cancel workout)</a></footer> -->
 
     <% if (loadWorkout != 'undefined') { %>
         <script type="text/javascript">

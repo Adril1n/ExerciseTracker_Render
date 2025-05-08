@@ -5,3 +5,15 @@
 .info-box .title {
     color: var(--gSecondary);
 }
+
+#workout-name {
+    font-size: 1rem;
+}
+
+#exerciseTable {
+    font-size: 0.8rem;
+}
+
+#select-exercise-main {
+    margin-top: 0;
+}

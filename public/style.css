@@ -28,6 +28,8 @@ CONTIANS
     --gSecondary: #A7F205;
     --pPrimary: #44238C;
     --pSecondary: #5F3DD9;
+
+    font-size: 4vw;
 }
 
 body {
@@ -42,7 +44,7 @@ body {
     position: relative;
     width: 100%;
     height: 90%;
-    top: 50px;
+    top: 3rem;
 /*    background-color: green;*/
 /*    padding-top: 1%;*/
 }
@@ -52,9 +54,23 @@ table {
     width: 100%;
 }
 
+th {
+    color: var(--secondary);
+    font-size: 1.1rem;
+}
+
+td {
+    color: var(--secondary);
+    opacity: 0.8;
+}
+
+tr:nth-child(even) {
+    background-color: var(--background-secondary);
+}
+
 header {
     position: fixed;
-    height: 8%;
+    height: 3rem;
     width: 100%;
     top: 0px;
     background-color: var(--background-secondary);
@@ -184,15 +200,15 @@ header > .arrow {
 
 .navigation-item > .logo {
     position: relative;
-    height: 30px;
-    width: 30px;
+    height: 2rem;
+    width: 2rem;
 
     margin-bottom: -5px;
 }
 
 .navigation-item > div {
     position: relative;
-    bottom: -0.2em;
+/*    bottom: -0.2em;*/
     font-size: 0.8rem;
 
     color: var(--secondary);
@@ -307,7 +323,7 @@ header > .arrow {
     position: relative;
     width: 100%;
     height: 2em;
-    top: 10vh;
+    top: 3rem;
 /*    background-color: green;*/
 
     display: flex;
@@ -315,7 +331,7 @@ header > .arrow {
     justify-content: space-evenly;
     overflow-x: scroll;
 
-    margin-bottom: 5%;
+/*    margin-bottom: 5%;*/
 
     background-color: var(--background-secondary);
     padding-top: 10px;
@@ -376,7 +392,7 @@ header > .arrow {
 
 .bar {
     width: 100%;
-    height: 10px;
+    height: 0.5rem;
     background-color: var(--background-secondary);
     border: 1px solid var(--secondary);
 }
@@ -391,10 +407,20 @@ header > .arrow {
 .home-portal {
     background-image: url("/images/home.png");
     background-repeat: no-repeat;
-    width: 100vw;
-    height: 100vh;
+    
+    /*max-width: 375px;
+    max-height: 667px;*/
+/*    margin: auto;*/
 
-    position: fixed;
+    width: 375px;
+    height: 667px;
+
+/*    transform: scale(1.0);*/
+
+/*    background-color: blue;*/
+    top: calc(50% - 375px);
+
+    position: absolute;
 }
 
 .logo {
@@ -442,4 +468,26 @@ button {
 
 #selectedExercise:empty::before {
     content: "Please select an exercise";
+}
+
+
+
+
+
+/* DESKTOP */
+@media (min-width: 600px) { 
+    :root {
+        font-size: 28px;
+    }
+
+    .home-portal {
+        transform: scale(1.5);
+    }
+}
+
+/* LARGE DESKTOP */
+@media (min-width: 1200px) { 
+    .home-portal {
+        transform: scale(2);
+    }
 }

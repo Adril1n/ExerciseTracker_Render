@@ -17,7 +17,7 @@ function getWeightIntervalsAsArray(intervals) {
 };
 
 function toggleFilterForm() {
-    document.getElementById('filterForm').classList.toggle('hidden');
+    document.getElementById('filter-container').classList.toggle('hidden');
     document.getElementById('select-exercise-main').classList.toggle('hidden');
     // toggleModal(document.getElementById('options-modal'));
 }

@@ -116,10 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const overviewContainer = document.getElementById('details-overview');
 
         var totalMuscleScore = Object.values(workout.muscleScores).reduce((partial, a) => partial + a.score, 0);
-        document.getElementById('details-overview-summary').innerHTML = `Date: ${dateString}<br>Total Fatigue: ${totalMuscleScore}<br>${workout.setsInfo}`
+        document.getElementById('details-overview-summary').innerHTML = `Date: ${dateString}<br>Total Score: ${totalMuscleScore}<br>${workout.setsInfo}`
 
 
         const exercisesTable = document.getElementById('details-overview-exercises').getElementsByTagName('tbody')[0];
+        exercisesTable.innerHTML = '';
         
         workout.exercises.forEach((exercise) => {
             exercisesTable.innerHTML += `<tr><td>${exercise.name}</td><td>${exercise.reps}</td><td>${exercise.weight} ${exercise.unit}</td><td>${exercise.fatigue}</td></tr>`;
@@ -127,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         const musclesTable = document.getElementById('details-overview-muscles').getElementsByTagName('tbody')[0];
+        musclesTable.innerHTML = '';
         var focusedScore = 0;
 
         Object.entries(workout.focusedMuscles).forEach((mLevel) => {
@@ -145,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //  EXERCISES
 
         const exercisesTable_Exercises = document.getElementById('details-exercises').getElementsByTagName('tbody')[0];
+        exercisesTable_Exercises.innerHTML = '';
         
         workout.exercises.forEach((exercise) => {
             exercisesTable_Exercises.innerHTML += `<tr><td>${exercise.name}</td><td>${exercise.reps}</td><td>${exercise.weight} ${exercise.unit}</td><td>${exercise.fatigue}</td><td>${exercise.type}</td></tr>`;
@@ -153,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //  STATS
 
         const statsTable = document.getElementById('details-stats').getElementsByTagName('tbody')[0];
+        statsTable.innerHTML = '';
         
         var totalReps = 0;
         var totalVolume = 0;
