@@ -6,15 +6,15 @@ function toggleDetails() {
 function changeDetailsTab(tabName) {
     // tabName = tab.textContent.toLowerCase();
     const detailsContent = document.getElementById('details-content');
-    const previousTab = detailsContent.getAttribute('activeTab');
+    const previousTab = detailsContent.getAttribute('data-activeTab');
     if (previousTab != "none") {
-        document.getElementById('tab-' + previousTab).setAttribute('active', "false");
+        document.getElementById('tab-' + previousTab).setAttribute('data-active', "false");
     }
 
     detailsContent.innerHTML = document.getElementById('details-' + tabName).innerHTML;
-    detailsContent.setAttribute('activeTab', tabName);
+    detailsContent.setAttribute('data-activeTab', tabName);
 
-    document.getElementById('tab-' + tabName).setAttribute('active', 'true');
+    document.getElementById('tab-' + tabName).setAttribute('data-active', 'true');
 }
 
 // async function sumWeights(exercises) {
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const li = document.createElement('li');
             li.classList.add('workout-item')
             // li.textContent = `${workout.name}`;
-            li.setAttribute('workout', workout.name);
+            li.setAttribute('data-workout', workout.name);
 
             const workoutBody = document.createElement('div');
             const workoutButtons = document.createElement('div');
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('details-name').textContent = workout.name;
 
-        detailsContainer.setAttribute('workout', workout.name);
+        detailsContainer.setAttribute('data-workout', workout.name);
 
         document.getElementById('option-edit').addEventListener('click', editWorkout);
         document.getElementById('option-delete').addEventListener('click', () => {deleteWorkout(workout.name)});
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         //FINAL
-        document.getElementById('details').setAttribute('workoutIndex', index);
+        document.getElementById('details').setAttribute('data-workoutIndex', index);
         toggleDetails();
         changeDetailsTab('overview');
     };
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // redirect to createWorkout but with a workout variable, check in indexCreateWorkout if there is a workout variable and fill the index accordingly
 
         // window.location.replace(`/create-workout?workout=${encodeURIComponent(document.getElementById('details-container').getAttribute('workout'))}`);
-        window.location.replace(`/create-workout?workout=${document.getElementById('details').getAttribute('workout')}&index=${document.getElementById('details').getAttribute('workoutIndex')}`);
+        window.location.replace(`/create-workout?workout=${document.getElementById('details').getAttribute('data-workout')}&index=${document.getElementById('details').getAttribute('data-workoutIndex')}`);
     };
 
     // document.getElementById('details-edit-exercise').addEventListener('click', editWorkout)

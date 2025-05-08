@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         weight = Math.max(parseFloat(weight), 0)
 
         if (exerciseName && fatigue && reps && (weight >= 0) && exerciseType) {
-            createExercise({name: exerciseName, fatigue: fatigue, reps: reps, weight: weight, type: exerciseType, unit: document.getElementById('weight').getAttribute('unit')});
+            createExercise({name: exerciseName, fatigue: fatigue, reps: reps, weight: weight, type: exerciseType, unit: document.getElementById('weight').getAttribute('data-unit')});
         } 
         else {
             alert('Please fill in all fields.');
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const weightClass = await weightClassResponse.json();
 
         const weightElement = document.getElementById('weight');
-        weightElement.setAttribute('unit', weightClass.unit);
+        weightElement.setAttribute('data-unit', weightClass.unit);
 
         weightElement.innerHTML = '';
 

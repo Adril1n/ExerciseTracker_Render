@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const weightClass = await response.json();
 
         const weightElement = document.getElementById('weight');
-        weightElement.setAttribute('unit', weightClass.unit);
+        weightElement.setAttribute('data-unit', weightClass.unit);
 
         weightElement.innerHTML = '';
 

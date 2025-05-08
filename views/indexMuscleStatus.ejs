@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,32 +8,32 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style_muscleScores.css">
 
-    <script type="text/javascript" src="scriptMenu.js"></script>
+    <script src="scriptMenu.js"></script>
 
-    <script type="text/javascript" src="scriptMuscleStatus.js"></script>
-    <script type="text/javascript" src="sorttable.js"></script>
+    <script src="scriptMuscleStatus.js"></script>
+    <script src="sorttable.js"></script>
 </head>
 <body>
     <header>
         <div class="title">Muscle Stats</div>
         <div class="menu-container hidden">
-            <section class="navigation-item" onclick="window.location = '/create-workout'">
-                <img src="/images/logos/workout_bright.png" class="logo">
+            <div class="navigation-item" onclick="window.location = '/create-workout'">
+                <img src="/images/logos/workout_bright.webp" alt="Create Workout" class="logo">
                 <div>New</div>
-            </section>
-            <section class="navigation-item" onclick="window.location = '/'">
-                <img src="/images/logos/house_bright.png" class="logo">
+            </div>
+            <div class="navigation-item" onclick="window.location = '/'">
+                <img src="/images/logos/house_bright.webp" alt="Home" class="logo">
                 <div>Home</div>
-            </section>
-            <section class="navigation-item" onclick="window.location = '/previous-workouts'">
-                <img src="/images/logos/logs_bright.png" class="logo">
+            </div>
+            <div class="navigation-item" onclick="window.location = '/previous-workouts'">
+                <img src="/images/logos/logs_bright.webp" alt="Previous Workouts" class="logo">
                 <div>Logs</div>
-            </section>
+            </div>
         </div>
-        <div class="menu-opener" defaultColor="var(--pSecondary)" onclick="toggleMenu(this.parentNode, this)"></div>
+        <div class="menu-opener" data-defaultColor="var(--pSecondary)" onclick="toggleMenu(this.parentNode, this)"></div>
     </header>
 
-    <div class="content">
+    <main>
         <table class="sortable" id="muscle-status-table">
             <thead>
                 <tr>
@@ -46,6 +46,6 @@
             <tbody>
             </tbody>
         </table>
-    </div>
+    </main>
 </body>
 </html>

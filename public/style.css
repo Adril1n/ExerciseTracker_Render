@@ -39,7 +39,7 @@ body {
 /*    background-blend-mode: lighten;*/
 }
 
-.content {
+main {
 /*    background-color: var(--background-secondary);*/
     position: relative;
     width: 100%;
@@ -52,6 +52,7 @@ body {
 table {
     overflow-y: scroll;
     width: 100%;
+    border-collapse: collapse;
 }
 
 th {
@@ -166,7 +167,7 @@ header > .menu-close {
 
 header > .arrow {
     left: 1%;
-    top: 5 %;
+    top: 5%;
 }
 
 .menu-container {
@@ -346,7 +347,7 @@ header > .arrow {
 /*    background-color: blue;*/
 }
 
-.tab[active~="true"] {
+.tab[data-active~="true"] {
 /*    background-color: yellow;*/
     border-bottom: 3px solid var(--rPrimary);
 }
@@ -405,7 +406,7 @@ header > .arrow {
 
 
 .home-portal {
-    background-image: url("/images/home.png");
+    background-image: url("/images/home.webp");
     background-repeat: no-repeat;
     
     /*max-width: 375px;
@@ -488,6 +489,7 @@ button {
 /* LARGE DESKTOP */
 @media (min-width: 1200px) { 
     .home-portal {
-        transform: scale(2);
+        transform: scale(1.5);
+/*        margin-top: 5%;*/
     }
 }

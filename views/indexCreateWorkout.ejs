@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,37 +8,37 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style_workout.css">
 
-    <script type="text/javascript" src="scriptMenu.js"></script>
+    <script src="scriptMenu.js"></script>
     
-    <script type="text/javascript" src="scriptCreateWorkout.js"></script>
-    <script type="text/javascript" src="scriptEditWorkout.js"></script>
-    <script type="text/javascript" src="scriptSelectExercise.js"></script>
+    <script src="scriptCreateWorkout.js"></script>
+    <script src="scriptEditWorkout.js"></script>
+    <script src="scriptSelectExercise.js"></script>
 
-    <script type="text/javascript" src="sorttable.js"></script>
+    <script src="sorttable.js"></script>
 </head>
 <body>
     <section id="section-create-workout">
          <header>
             <!-- <div class="menu-close" onclick="window.location = '/'"></div> -->
-            <div class="title">Create New Workout</div>
+            <h2 class="title">Create New Workout</h2>
             <div class="menu-container hidden">
-                <section class="navigation-item" onclick="window.location = '/previous-workouts'">
-                    <img src="/images/logos/logs_bright.png" class="logo">
+                <div class="navigation-item" onclick="window.location = '/previous-workouts'">
+                    <img src="/images/logos/logs_bright.webp" alt="Previous Workouts" class="logo">
                     <div>Logs</div>
-                </section>
-                <section class="navigation-item" onclick="window.location = '/'">
-                    <img src="/images/logos/house_bright.png" class="logo">
+                </div>
+                <div class="navigation-item" onclick="window.location = '/'">
+                    <img src="/images/logos/house_bright.webp" alt="Home" class="logo">
                     <div>Home</div>
-                </section>
-                <section class="navigation-item" onclick="window.location = '/muscle-status'">
-                    <img src="/images/logos/stats_bright.png" class="logo">
+                </div>
+                <div class="navigation-item" onclick="window.location = '/muscle-status'">
+                    <img src="/images/logos/stats_bright.webp" alt="Muscle Status" class="logo">
                     <div>Stats</div>
-                </section>
+                </div>
             </div>
-            <div class="menu-opener" defaultColor="var(--gPrimary)" onclick="toggleMenu(this.parentNode, this)"></div>
+            <div class="menu-opener" data-defaultColor="var(--gPrimary)" onclick="toggleMenu(this.parentNode, this)"></div>
         </header>
 
-        <div class="content">
+        <main>
             <form class="info-container" id="create-workout-form">
                 <div class="info-box">
                     <label class="title">Summary</label>
@@ -78,17 +78,17 @@
 
                 <button type="submit">Create Workout</button>
             </form>
-        </div>
+        </main>
     </section>
 
     <section id="section-edit-workout" class="hidden">
         <header>
             <div class="menu-close" onclick="window.location = '/'"></div>
-            <div class="title" id="workout-name">[WORKOUT NAME]</div>
+            <h3 class="title" id="workout-name">[WORKOUT NAME]</h3>
             <div class="menu-opener" onclick="toggleModal(document.getElementById('options-modal'))"></div>
         </header>
 
-        <div class="content">
+        <main>
             <div class="info-container" id="workout-container">
                 <div class="info-box">
                     <div class="title">Workout Info</div>
@@ -112,7 +112,7 @@
                     <ul id="exerciseList"></ul>
                 </div>
             </div>
-        </div>
+        </main>
 
         <div class="modal hidden" id="options-modal">
             <div class="modal-option-container">
@@ -127,12 +127,12 @@
     <section id="section-add-exercise" class="hidden">
         <header>
             <div class="menu-close" onclick="toggleAddExerciseSection()"></div>
-            <div class="title" id="workout-name">Add Exercise</div>
+            <h1 class="title">Add Exercise</h1>
             <!-- <div class="menu-opener" onclick="toggleModal(document.getElementById('options-modal'))"></div> -->
         </header>
 
-        <div class="content">
-            <div class="info-container" id="workout-container">
+        <main>
+            <div class="info-container">
                 <div class="info-box">
                     <div id="select-new-exercise">New Exercise</div>
                     <div id="selectedExercise"></div>
@@ -146,7 +146,7 @@
                     </select>
 
                     <input type="number" id="reps" placeholder="Reps" min="1">
-                    <select id="weight" unit="null">
+                    <select id="weight" data-unit="null">
                         <option value="">Weight (Select an Exercise)</option>
                     </select>
 
@@ -167,17 +167,17 @@
                     <button id="addExercise">Add Exercise</button>  
                 </div>
             </div>
-        </div>
+        </main>
     </section>
 
     <section id="section-select-exercise" class="hidden">
         <header>
             <div class="menu-close" id="select-exercise-close" ></div>
-            <div class="title">Select an exercise</div>
+            <h1 class="title">Select an exercise</h1>
             <div class="menu-setting" onclick="toggleFilterForm()"></div>
         </header>
 
-        <div class="content">
+        <main>
             <div id="select-exercise-container" class="info-container">
                 <div class="hidden" id="filter-container">
                     <form id="filterForm" class="info-container">
@@ -216,11 +216,11 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </main>
     </section>
 
     <% if (loadWorkout != 'undefined') { %>
-        <script type="text/javascript">
+        <script>
             loadWorkout = JSON.parse(decodeURIComponent('<%= loadWorkout %>'));
         </script>
     <% } %>

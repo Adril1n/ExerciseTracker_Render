@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,51 +7,51 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style_previousWorkouts.css">
-    <script type="text/javascript" src="scriptMenu.js"></script>
-    <script type="text/javascript" src="scriptPastWorkouts.js"></script>
+    <script src="scriptMenu.js"></script>
+    <script src="scriptPastWorkouts.js"></script>
 </head>
 <body>
-    <section id="workouts">
+    <div id="workouts">
         <header>
-            <div class="title">Previous Workouts</div>
+            <h2 class="title">Previous Workouts</h2>
             <div class="menu-container hidden">
-                <section class="navigation-item" onclick="window.location = '/create-workout'">
-                    <img src="/images/logos/workout_bright.png" class="logo">
+                <div class="navigation-item" onclick="window.location = '/create-workout'">
+                    <img src="/images/logos/workout_bright.webp" alt="Create Workout" class="logo">
                     <div>New</div>
-                </section>
-                <section class="navigation-item" onclick="window.location = '/'">
-                    <img src="/images/logos/house_bright.png" class="logo">
+                </div>
+                <div class="navigation-item" onclick="window.location = '/'">
+                    <img src="/images/logos/house_bright.webp" alt="Home" class="logo">
                     <div>Home</div>
-                </section>
-                <section class="navigation-item" onclick="window.location = '/muscle-status'">
-                    <img src="/images/logos/stats_bright.png" class="logo">
+                </div>
+                <div class="navigation-item" onclick="window.location = '/muscle-status'">
+                    <img src="/images/logos/stats_bright.webp" alt="Muscle Stats" class="logo">
                     <div>Stats</div>
-                </section>
+                </div>
             </div>
-            <div class="menu-opener" defaultColor="var(--rSecondary)" onclick="toggleMenu(this.parentNode, this)"></div>
+            <div class="menu-opener" data-defaultColor="var(--rSecondary)" onclick="toggleMenu(this.parentNode, this)"></div>
         </header>
 
-        <div class="content">
+        <main>
             <ul id="workout-list">
-                <span style="color: var(--secondary);">LOADING...</span>
+                <li style="color: var(--secondary);">LOADING...</li>
             </ul>
-        </div>
-    </section>
+        </main>
+    </div>
 
-    <section id="details" class="hidden">
+    <div id="details" class="hidden">
         <header>
-            <div id="details-name" class="title"></div>
+            <h2 id="details-name" class="title"></h2>
             <div class="menu-opener" onclick="toggleModal(document.getElementById('options-modal'))"></div>
 
             <div class="arrow" onclick="toggleDetails()">&#x25c0;</div>
         </header>
         <div class="tab-container">
-            <div class="tab" id="tab-overview" onclick="changeDetailsTab('overview')" active="false">Overview</div>
-            <div class="tab" id="tab-exercises" onclick="changeDetailsTab('exercises')" active="false">Exercises</div>
-            <div class="tab" id="tab-stats" onclick="changeDetailsTab('stats')" active="false">Stats</div>
+            <div class="tab" id="tab-overview" onclick="changeDetailsTab('overview')" data-active="false">Overview</div>
+            <div class="tab" id="tab-exercises" onclick="changeDetailsTab('exercises')" data-active="false">Exercises</div>
+            <div class="tab" id="tab-stats" onclick="changeDetailsTab('stats')" data-active="false">Stats</div>
         </div>
 
-        <div class="content info-container" id="details-content" activeTab="none"></div>
+        <main class="info-container" id="details-content" data-activeTab="none"></main>
 
         <div class="hidden" id="details-overview">
             <div class="info-box" id="details-overview-summary"></div>
@@ -135,6 +135,6 @@
             </div>
             <div class="modal-cancel" onclick="toggleModal(document.getElementById('options-modal'))"><p>Cancel</p></div>
         </div>
-    </section>
+    </div>
 </body>
 </html>

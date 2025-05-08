@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-<body style='background-image: url("/images/background.png");display: flex; justify-content: space-around;'>
+<body style='background-image: url("/images/background.webp");display: flex; justify-content: space-around;'>
     <!-- <div class="container">
         <ul>
             <li><a href="create-workout">Create New Workout</a></li>
@@ -18,13 +18,13 @@
     </div> -->
     <div class="home-portal">
         <!-- <h1 class="title">Exercise Tracker</h1> -->
-        <!-- <img src="/images/home.png" style="position: absolute; right: 0px;"> -->
-        <img src="/images/logos/workout_bright.png" alt="Create Workout" class="logo" style="right: calc(50% - 25px);top: 29%;rotate: -20deg;" onclick="window.location = 'create-workout'">
-        <img src="/images/logos/logs_bright.png" alt="Previous Workouts" class="logo" style="right: 76.5%;top: 60.5%;" onclick="window.location = 'previous-workouts'">
-        <img src="/images/logos/stats_bright.png" alt="Muscle Status" class="logo" style="right: 10%;top: 60.5%;" onclick="window.location = 'muscle-status'">
+        <!-- <img src="/images/home.webp" style="position: absolute; right: 0px;"> -->
+        <img src="/images/logos/workout_bright.webp" alt="Create Workout" class="logo" style="right: calc(50% - 25px);top: 29%;transform: rotate(-20deg);" onclick="window.location = 'create-workout'">
+        <img src="/images/logos/logs_bright.webp" alt="Previous Workouts" class="logo" style="right: 76.5%;top: 60.5%;" onclick="window.location = 'previous-workouts'">
+        <img src="/images/logos/stats_bright.webp" alt="Muscle Status" class="logo" style="right: 10%;top: 60.5%;" onclick="window.location = 'muscle-status'">
     </div>
 
-    <script type="text/javascript">
+    <script>
         document.getElementsByTagName("body")[0].style.backgroundPosition = Math.round(Math.random() * 100) + "% " + Math.round(Math.random() * 100) + "%";
     </script>
 </body>

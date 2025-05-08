@@ -8,7 +8,7 @@ function toggleMenu(container, toggleElement) {
         toggleElement.style.color = 'var(--secondary)'
     }
     else {
-        toggleElement.style.color = toggleElement.getAttribute('defaultColor');
+        toggleElement.style.color = toggleElement.getAttribute('data-defaultColor');
     }
 }
 

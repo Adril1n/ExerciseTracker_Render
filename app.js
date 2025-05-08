@@ -21,12 +21,7 @@ const workoutsDocument = firestore.doc("Workouts/e3hmbDO7Nmd6OdxOg6qH");
 
 // TOOD: Change to https://www.lyfta.app/exercises
 
-// TODO: CSS, and to fit phone screen
-
 // TODO: change table filling to use table.insertRow() and ..insertCell() instead of strings (maybe)
-
-// TODO: change images to .webp, add "role='presentation'" and alt-attributes
-// TODO: change div.content to "<main>"
 
 // TODO: Quality of Life
     // TODO: Maybe highlight in the select-exercise what muscles are the ones that match the filter
