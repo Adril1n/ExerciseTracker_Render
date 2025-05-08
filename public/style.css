@@ -33,7 +33,7 @@ CONTIANS
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Verdana, Arial, sans-serif;
     background-color: var(--background);
     margin: 0;
 /*    background-blend-mode: lighten;*/
