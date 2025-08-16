@@ -4,7 +4,10 @@ const fs = require('fs');
 const cors = require('cors');
 const {Firestore} = require('@google-cloud/firestore');
 
-const firestore = new Firestore();
+const firestore = new Firestore({
+    projectId: "exercisetracker-38e52",
+    keyFilename: "/Users/adrian/Documents/HTML/ExerciseTracker3/firestoreKeys/exercisetracker-38e52-7cd07f979ded.json",
+});
 
 const app = express();
 const PORT = 3000;
@@ -16,7 +19,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-const workoutsDocument = firestore.doc("Workouts/e3hmbDO7Nmd6OdxOg6qH");
+// const workoutsDocument = firestore.doc("Workouts/e3hmbDO7Nmd6OdxOg6qH");
 
 
 // TOOD: Change to https://www.lyfta.app/exercises
