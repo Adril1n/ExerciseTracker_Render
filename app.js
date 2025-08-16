@@ -4,10 +4,18 @@ const fs = require('fs');
 const cors = require('cors');
 const {Firestore} = require('@google-cloud/firestore');
 
+
+const serviceAccount = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
 const firestore = new Firestore({
-    projectId: "exercisetracker-38e52",
-    keyFilename: "firestoreKeys/exercisetracker-38e52-7cd07f979ded.json",
+    projectId: serviceAccount.project_id,
+    credentials: {
+        client_email: serviceAccount.client_email,
+        private_key: serviceAccount.private_key,
+      },
+    // keyFilename: "firestoreKeys/exercisetracker-38e52-7cd07f979ded.json",
 });
+
+// module.exports = firestore;
 
 const app = express();
 const PORT = 3000;
