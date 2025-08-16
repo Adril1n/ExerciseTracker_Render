@@ -6,7 +6,7 @@ const {Firestore} = require('@google-cloud/firestore');
 
 const firestore = new Firestore({
     projectId: "exercisetracker-38e52",
-    // keyFilename: "/Users/adrian/Documents/HTML/ExerciseTracker3/firestoreKeys/exercisetracker-38e52-7cd07f979ded.json",
+    keyFilename: "/Users/adrian/Documents/HTML/ExerciseTracker3/firestoreKeys/exercisetracker-38e52-7cd07f979ded.json",
 });
 
 const app = express();
